@@ -37,24 +37,30 @@
             <h3>Choose Direction</h3>
         </div>
         <div class="row">
-            <!--<div class="col-md-6">-->
-                <ul class="nav nav-pills nav-justified direction">
-                    <li class="active"><a href="#">Northbound</a></li>
-                    <li><a href="#">Southbound</a></li>
-                </ul>
-            <!--</div>-->
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-primary">
+                    <input type="radio" name="options" id="n-direction"> Northbound
+                </label>
+                <label class="btn btn-primary">
+                    <input type="radio" name="options" id="s-direction"> Southbound
+                </label>
+            </div>
         </div>
         <div class="row">
             <h3>Choose Day</h3>
         </div>
         <div class="row">
-            <!--<div class="col-md-6">-->
-                <ul class="nav nav-pills nav-justified direction">
-                    <li class="active"><a href="#">Weekday</a></li>
-                    <li><a href="#">Weekend</a></li>
-                    <li><a href="#" >Holiday</a></li>
-                </ul>
-            <!--</div>-->
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-primary">
+                    <input type="radio" name="options" id="wk-day"> Weekday
+                </label>
+                <label class="btn btn-primary">
+                    <input type="radio" name="options" id="wkd-day"> Weekend
+                </label>
+                <label class="btn btn-primary">
+                    <input type="radio" name="options" id="h-day"> Holiday
+                </label>
+            </div>
         </div>
 
 
@@ -107,18 +113,7 @@
         );
 
         var direction, day;
-        $(document).ready(function () {
-            $('ul.nav > li a').click(function (e) {
-                $(this).closest('ul.nav').find('.active').removeClass('active');
-                $(this).parent().addClass('active');
-                if($(this).text() == "Holiday"){
-                    $('#holidayList').css({"display":"inline"})
-                } else {
-                    $('#holidayList').css({"display":"none"})
-                }
-                refresh();
-            });
-        });
+
 
         function refresh(){
             if(data != null){
