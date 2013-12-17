@@ -64,19 +64,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="122" column="0" selection-start="4077" selection-end="4557" vertical-scroll-proportion="-20.541666" vertical-offset="1337" max-vertical-offset="4530">
+            <state line="242" column="28" selection-start="8136" selection-end="8136" vertical-scroll-proportion="2.4216027" vertical-offset="2935" max-vertical-offset="4830">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="readme" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="readme" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/readme">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="4" selection-start="282" selection-end="282" vertical-scroll-proportion="0.27043268" vertical-offset="0" max-vertical-offset="832">
+            <state line="14" column="4" selection-start="269" selection-end="269" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
               <folding />
             </state>
           </provider>
@@ -102,16 +102,16 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/readme" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="25" />
-    <option name="y" value="131" />
+    <option name="y" value="22" />
     <option name="width" value="1436" />
-    <option name="height" value="1399" />
+    <option name="height" value="878" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -586,22 +586,22 @@
       <workItem from="1386720081889" duration="95000" />
       <workItem from="1387217940237" duration="22359000" />
       <workItem from="1387259883324" duration="873000" />
-      <workItem from="1387300104912" duration="1158000" />
+      <workItem from="1387300104912" duration="3102000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28981000" />
+    <option name="totallyTimeSpent" value="30925000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="25" y="131" width="1436" height="1399" extended-state="0" />
-    <editor active="true" />
+    <frame x="25" y="22" width="1436" height="878" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32969603" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5539474" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -778,16 +778,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/readme">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="122" column="0" selection-start="4077" selection-end="4557" vertical-scroll-proportion="-20.541666" vertical-offset="1337" max-vertical-offset="4530">
+        <state line="14" column="4" selection-start="269" selection-end="269" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/readme">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="4" selection-start="282" selection-end="282" vertical-scroll-proportion="0.27043268" vertical-offset="0" max-vertical-offset="832">
+        <state line="242" column="28" selection-start="8136" selection-end="8136" vertical-scroll-proportion="2.4216027" vertical-offset="2935" max-vertical-offset="4830">
           <folding />
         </state>
       </provider>
