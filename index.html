@@ -270,8 +270,9 @@
                 {
                     type       : "GET",
                     url        : "http://build.appliciti.com:8000/nmrx/config/work/json-all-schedules/",
-//                    dataType   : 'jsonp',
+                    dataType   : 'jsonp',
                     success    : function(response) {
+                        alert("Success")
                         ajax.parseJSONP(response);
                     },
                     error      : function() {
