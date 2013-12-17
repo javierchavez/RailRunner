@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+
+    <script src="app.js"></script>
+
+    <style type="text/css">
+        /*body { background-color: #912924; }*/
+        #holidayList { display: none; }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="jumbotron" >
+        <div class="container">
+
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+            <h3>Choose Direction</h3>
+        </div>
+        <div class="row">
+            <!--<div class="col-md-6">-->
+                <ul class="nav nav-pills nav-justified direction">
+                    <li class="active"><a href="#">Northbound</a></li>
+                    <li><a href="#">Southbound</a></li>
+                </ul>
+            <!--</div>-->
+        </div>
+        <div class="row">
+            <h3>Choose Day</h3>
+        </div>
+        <div class="row">
+            <!--<div class="col-md-6">-->
+                <ul class="nav nav-pills nav-justified direction">
+                    <li class="active"><a href="#">Weekday</a></li>
+                    <li><a href="#">Weekend</a></li>
+                    <li><a href="#" >Holiday</a></li>
+                </ul>
+            <!--</div>-->
+        </div>
+
+
+
+        <select class="form-control" id="holidayList">
+            <option>Martin Luther King Jr. Day</option>
+            <option>Presidents' Day</option>
+            <option>Memorial Day</option>
+            <option>Independence Day</option>
+            <option>Labor Day Weekend</option>
+            <option>Columbus Day</option>
+            <option>Veterans Day</option>
+            <option>Thanksgiving Day</option>
+            <option>Day After Thanksgiving</option>
+            <option>Christmas Eve</option>
+            <option>Christmas Day</option>
+            <option>Day After Christmas</option>
+            <option>New Year's Eve</option>
+            <option>New Year's Day</option>
+            <option>Day After New Year's</option>
+        </select>
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        var data;
+        var ajax = {
+            parseJSONP: function(result){
+                data = result;
+            }
+        }
+
+
+        $.ajax(
+                {
+                    type       : "GET",
+                    url        : "http://build.appliciti.com:8000/nmrx/config/work/json-all-schedules/",
+//                    dataType   : 'jsonp',
+                    success    : function(response) {
+                        ajax.parseJSONP(response);
+                    },
+                    error      : function() {
+                        alert('Not working!');
+                    }
+
+                }
+
+        );
+
+        var direction, day;
+        $(document).ready(function () {
+            $('ul.nav > li a').click(function (e) {
+                $(this).closest('ul.nav').find('.active').removeClass('active');
+                $(this).parent().addClass('active');
+                if($(this).text() == "Holiday"){
+                    $('#holidayList').css({"display":"inline"})
+                } else {
+                    $('#holidayList').css({"display":"none"})
+                }
+                refresh();
+            });
+        });
+
+        function refresh(){
+            if(data != null){
+                for (var i =0; i < data.length;i++){
+                    //add check for holiday
+                    if((data[i]["name"].indexOf(direction) != -1) && (data[i]["name"].indexOf(day) != -1)){
+
+                    }
+                }
+            }
+        }
+
+
+    </script>
+
+</body>
+</html>
