@@ -63,41 +63,50 @@
                 <option>Day After New Year's</option>
             </select>
         </div>
-        <!--User Location selection-->
-        <div class="row">
+
+        <div id="user-data">
+
+            <!--User Location selection-->
             <div class="row">
-                <div class="col-md-4">
-                    <h4>Your Location:</h4>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4>Your Location:</h4>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control" id="from-stations">
+                        </select>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <select class="form-control" id="from-stations">
-                    </select>
+            </div>
+            <!--Destination selection-->
+            <div class="row">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4>Destination:</h4>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control" id="to-stations">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!--Time selection-->
+            <div class="row">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4>Time of Departure:</h4>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control" id="d-time">
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
-        <!--Destination selection-->
         <div class="row">
-            <div class="row">
-                <div class="col-md-4">
-                    <h4>Destination:</h4>
-                </div>
-                <div class="col-md-4">
-                    <select class="form-control" id="to-stations">
-                    </select>
-                </div>
-            </div>
-        </div>
-        <!--Time selection-->
-        <div class="row">
-            <div class="row">
-                <div class="col-md-4">
-                    <h4>Time:</h4>
-                </div>
-                <div class="col-md-4">
-                    <select class="form-control" id="d-time">
-                    </select>
-                </div>
-            </div>
+            <p>
+                <button type="button" id="view-toggle-btn" class="btn btn-primary btn-lg pull-right">Show Schedule</button>
+            </p>
         </div>
     </div>
 
@@ -197,6 +206,9 @@
     <script type="text/javascript">
         // Station data from server
         var sData;
+        var stationsArr = [];
+        var timesArr = []
+        var userLocation, userDestination;
 
         // Helper to find unique stations
         var unique = function(origArr) {
@@ -223,8 +235,8 @@
         var ajax = {
             parseJSONP: function(result){
                 sData = result;
-                //updateFormData();
                 //refresh();
+                //updateFormData();
 
             }
         }
@@ -279,48 +291,81 @@
             });
         });
 
+        // get the user location and destination from drop downs
+        $('#to-stations').change(function () {
+            userDestination = $(this).val();
+        });
+        $('#from-stations').change(function () {
+            userLocation = $(this).val();
+        })
+
+
         function refresh(){
             if(sData != null){
-                tmp = []
+
                 for (var i =0; i < sData.length;i++){
                     //add check for holiday(holidays)
                     if((sData[i]["name"].indexOf(direction) != -1) && (sData[i]["name"].indexOf(day) != -1)){
                         // console.log(sData[i]["name"])
+                        // get stations names
                         for (var x = 0; x < sData[i]["data"].length; x++){
-                            tmp.push(sData[i]["data"][x]["station"])
+                            stationsArr.push(sData[i]["data"][x]["station"])
+                            if (userLocation == sData[i]["data"][x]["station"]){
+                                timesArr.push(sData[i]["data"][x]["time"])
+                            }
                         }
-
-
                     }
                 }
             }
         }
 
         function updateFormData(){
-            var test = []
+
             for (var g =0; g < sData[0]["data"].length; g++){
-                tmp.push(sData[0]["data"][g]["station"])
+                stationsArr.push(sData[0]["data"][g]["station"])
             }
             // get unique stations
-            test = unique(tmp)
+            var uniqStationsArr = unique(stationsArr)
 
-            //creating drop downs data
+
             /*This is for the TO field*/
             var stringTo = ""
-            for (var s = 0; s < test.length; s++){
-                stringTo += '<option>'+ test[s] +'</option>';
+            for (var s = 0; s < uniqStationsArr.length; s++){
+                stringTo += '<option>'+ uniqStationsArr[s] +'</option>';
             }
             document.getElementById("to-stations").innerHTML = ""
             document.getElementById("to-stations").innerHTML = stringTo
 
             /*This is for the FROM field*/
             var stringFrom = ""
-            for (var s = 0; s < test.length; s++){
-                stringFrom += '<option>'+ test[s] +'</option>';
+            for (var s = 0; s < uniqStationsArr.length; s++){
+                stringFrom += '<option>'+ uniqStationsArr[s] +'</option>';
             }
             document.getElementById("from-stations").innerHTML = ""
             document.getElementById("from-stations").innerHTML = stringFrom
+
+            /*This is for the TIME field*/
+            var stringTimes = ""
+            for (var s = 0; s < timesArr.length; s++){
+                stringTimes += '<option>'+ timesArr[s] +'</option>';
+            }
+            document.getElementById("d-time").innerHTML = ""
+            document.getElementById("d-time").innerHTML = stringTimes
         }
+
+        var currentState
+        $("#view-toggle-btn").click(function(){
+           if ($(this).text() == "Show Schedule"){
+               $(this).text("Change Trip")
+               currentState = $("#user-data").html();
+               $("#user-data").text("");
+           }
+           else {
+               $(this).text("Show Schedule")
+               $("#user-data").html(currentState);
+           }
+        });
+
 
 
     </script>
