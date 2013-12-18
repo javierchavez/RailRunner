@@ -63,7 +63,7 @@
                 <option>Day After New Year's</option>
             </select>
         </div>
-
+        <!--User Location selection-->
         <div class="row">
             <div class="row">
                 <div class="col-md-4">
@@ -75,6 +75,7 @@
                 </div>
             </div>
         </div>
+        <!--Destination selection-->
         <div class="row">
             <div class="row">
                 <div class="col-md-4">
@@ -86,6 +87,7 @@
                 </div>
             </div>
         </div>
+        <!--Time selection-->
         <div class="row">
             <div class="row">
                 <div class="col-md-4">
@@ -97,7 +99,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
 
@@ -295,7 +296,7 @@
             }
         }
 
-        function updateFormData(array){
+        function updateFormData(){
             var test = []
             for (var g =0; g < sData[0]["data"].length; g++){
                 tmp.push(sData[0]["data"][g]["station"])
