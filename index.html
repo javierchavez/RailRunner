@@ -37,24 +37,21 @@
             <h3>Choose Direction</h3>
         </div>
         <div class="row">
-            <!--<div class="col-md-6">-->
                 <ul class="nav nav-pills nav-justified direction">
                     <li class="active"><a href="#">Northbound</a></li>
                     <li><a href="#">Southbound</a></li>
                 </ul>
-            <!--</div>-->
         </div>
         <div class="row">
             <h3>Choose Day</h3>
         </div>
         <div class="row">
-            <!--<div class="col-md-6">-->
-                <ul class="nav nav-pills nav-justified direction">
+                <ul class="nav nav-pills nav-justified day">
                     <li class="active"><a href="#">Weekday</a></li>
-                    <li><a href="#">Weekend</a></li>
+                    <li><a href="#">Saturday</a></li>
+                    <li><a href="#">Sunday</a></li>
                     <li><a href="#" >Holiday</a></li>
                 </ul>
-            <!--</div>-->
         </div>
 
 
@@ -81,7 +78,7 @@
         <div class="row">
             <div class="row">
                 <div class="col-md-4">
-                    <h4>From:</h4>
+                    <h4>Your Location:</h4>
                 </div>
                 <div class="col-md-4">
                     <select class="form-control" id="from-stations">
@@ -92,7 +89,7 @@
         <div class="row">
             <div class="row">
                 <div class="col-md-4">
-                    <h4>To:</h4>
+                    <h4>Destination:</h4>
                 </div>
                 <div class="col-md-4">
                     <select class="form-control" id="to-stations">
@@ -100,6 +97,18 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Time:</h4>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-control" id="d-time">
+                    </select>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 
@@ -196,6 +205,8 @@
 
 
     <script type="text/javascript">
+        // Station data from server
+        var sData;
         // Helper to find unique stations
         var unique = function(origArr) {
             var newArr = [],
@@ -216,18 +227,12 @@
             return newArr;
         };
 
-        var data;
+
+
         var ajax = {
             parseJSONP: function(result){
-                data = result;
-                tmp = []
-                for (var g =0; g < data[0]["data"].length; g++){
-                    tmp.push(data[0]["data"][g]["station"])
-                }
-                // get usique stations
-                test = unique(tmp)
-
-                updateData();
+                sData = result;
+                updateFormData();
                 refresh();
 
             }
@@ -237,7 +242,7 @@
         $.ajax(
                 {
                     type       : "GET",
-                    url        : "http://build.appliciti.com:8000/nmrx/config/work/json-all-schedules/",
+                    url        : "http://dev.appliciti.com/nmrx/config/work/json-all-schedules/",
                     dataType   : 'jsonp',
                     success    : function(response) {
                         console.log("Data loaded successfully")
@@ -257,6 +262,15 @@
             $('ul.nav > li a').click(function (e) {
                 $(this).closest('ul.nav').find('.active').removeClass('active');
                 $(this).parent().addClass('active');
+
+                if($(this).text() == "Weekday" || $(this).text() == "Saturday" || $(this).text() == "Sunday" || $(this).text() == "Holiday"){
+                  day = $(this).parent().text();
+                } else {
+                    direction = $(this).parent().text();
+                }
+
+                console.log("day:" + day +" direction " + direction)
+
                 if($(this).text() == "Holiday"){
                     $('#holidayList').css({"display":"inline"})
                 } else {
@@ -264,28 +278,36 @@
                 }
 
                 refresh();
-                updateData();
+                updateFormData();
             });
         });
 
         function refresh(){
-            if(data != null){
+            if(sData != null){
                 tmp = []
-                for (var i =0; i < data.length;i++){
-                    //add check for holiday
-                    if((data[i]["name"].indexOf(direction) != -1) && (data[i]["name"].indexOf(day) != -1)){
-                        for (var y = 0; y < data[i]["name"]["data"].size; y++){
-                            for (var g =0; g < data[0]["data"].length; g++){
-                                tmp.push(data[i]["data"][g]["station"])
-                            }
+                for (var i =0; i < sData.length;i++){
+                    //add check for holiday(holidays)
+                    if((sData[i]["name"].indexOf(direction) != -1) && (sData[i]["name"].indexOf(day) != -1)){
+                        console.log("sjkdf")
+                        for (var x = 0; x < sData[i]["name"]["data"].length; x++){
+                            console.log("hel")
                         }
+
 
                     }
                 }
             }
         }
 
-        function updateData(){
+        function updateFormData(){
+            var tmp = []
+            var test = []
+            for (var g =0; g < sData[0]["data"].length; g++){
+                tmp.push(sData[0]["data"][g]["station"])
+            }
+            // get unique stations
+            test = unique(tmp)
+
             //creating drop downs data
             /*This is for the TO field*/
             var stringTo = ""
