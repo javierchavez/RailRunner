@@ -232,8 +232,8 @@
         var ajax = {
             parseJSONP: function(result){
                 sData = result;
-                updateFormData();
-                refresh();
+                //updateFormData();
+                //refresh();
 
             }
         }
@@ -259,22 +259,29 @@
         var direction, day;
         $(document).ready(function () {
             $('ul.nav > li a').click(function (e) {
+                // highlight option the user clicked
                 $(this).closest('ul.nav').find('.active').removeClass('active');
                 $(this).parent().addClass('active');
 
+                // if the user clicked a Day option
                 if($(this).text() == "Weekday" || $(this).text() == "Saturday" || $(this).text() == "Sunday" || $(this).text() == "Holiday"){
-                  day = $(this).parent().text();
-                } else {
+                    //get the day that the user clicked
+                    day = $(this).parent().text();
+
+                    // if user clicked holiday then update DOM
+                    if($(this).text() == "Holiday"){
+                        $('#holidayList').css({"display":"inline"})
+                    } else {
+                        $('#holidayList').css({"display":"none"})
+                    }
+                }
+                // the user clicked the direction
+                else {
                     direction = $(this).parent().text();
                 }
 
-                console.log("day:" + day +" direction " + direction)
+                // console.log("The user choose: DAY: " + day +" DIRECTION: " + direction)
 
-                if($(this).text() == "Holiday"){
-                    $('#holidayList').css({"display":"inline"})
-                } else {
-                    $('#holidayList').css({"display":"none"})
-                }
 
                 refresh(); //must be called first
                 updateFormData();
@@ -312,6 +319,7 @@
             for (var s = 0; s < test.length; s++){
                 stringTo += '<option>'+ test[s] +'</option>';
             }
+            document.getElementById("to-stations").innerHTML = ""
             document.getElementById("to-stations").innerHTML = stringTo
 
             /*This is for the FROM field*/
@@ -319,6 +327,7 @@
             for (var s = 0; s < test.length; s++){
                 stringFrom += '<option>'+ test[s] +'</option>';
             }
+            document.getElementById("from-stations").innerHTML = ""
             document.getElementById("from-stations").innerHTML = stringFrom
         }
 
