@@ -67,7 +67,7 @@
       <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="369" column="0" selection-start="13345" selection-end="13345" vertical-scroll-proportion="0.9301242" vertical-offset="4486" max-vertical-offset="5235">
+            <state line="369" column="50" selection-start="13475" selection-end="13475" vertical-scroll-proportion="5.1940994" vertical-offset="1740" max-vertical-offset="5310">
               <folding>
                 <element signature="e#7742#8279#0" expanded="false" />
                 <element signature="e#8604#9195#0" expanded="false" />
@@ -592,22 +592,22 @@
       <workItem from="1387300104912" duration="3102000" />
       <workItem from="1387393833464" duration="180000" />
       <workItem from="1387394017638" duration="124000" />
-      <workItem from="1387394155731" duration="13138000" />
+      <workItem from="1387394155731" duration="14439000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61613000" />
+    <option name="totallyTimeSpent" value="62914000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="22" width="1623" height="1126" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3108911" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3108911" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -892,7 +892,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="369" column="0" selection-start="13345" selection-end="13345" vertical-scroll-proportion="0.9301242" vertical-offset="4486" max-vertical-offset="5235">
+        <state line="369" column="50" selection-start="13475" selection-end="13475" vertical-scroll-proportion="5.1940994" vertical-offset="1740" max-vertical-offset="5310">
           <folding>
             <element signature="e#7742#8279#0" expanded="false" />
             <element signature="e#8604#9195#0" expanded="false" />

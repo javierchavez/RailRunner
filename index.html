@@ -353,10 +353,15 @@
             document.getElementById("d-time").innerHTML = stringTimes
         }
 
-        var currentState
+        /*
+            Toggle between schedule view and settings view
+        */
+        var scheduleState, dataState
         $("#view-toggle-btn").click(function(){
            if ($(this).text() == "Show Schedule"){
+               //change the text on the button
                $(this).text("Change Trip")
+               //
                currentState = $("#user-data").html();
                $("#user-data").text("");
            }
