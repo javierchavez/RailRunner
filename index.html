@@ -16,6 +16,7 @@
 
     <style type="text/css">
         #holidayList { display: none; }
+        #entire-sch { display: none; }
     </style>
 
 </head>
@@ -23,147 +24,134 @@
 
 
     <div class="container">
-
-        <div class="row">
-            <h3>Choose Direction</h3>
-        </div>
-        <div class="row">
-                <ul class="nav nav-pills nav-justified direction">
-                    <li ><a href="#">Northbound</a></li>
-                    <li><a href="#">Southbound</a></li>
-                </ul>
-        </div>
-        <div class="row">
-            <h3>Choose Day</h3>
-        </div>
-        <div class="row">
-                <ul class="nav nav-pills nav-justified day">
-                    <li ><a href="#">Weekday</a></li>
-                    <li><a href="#">Saturday</a></li>
-                    <li><a href="#">Sunday</a></li>
-                    <li><a href="#" >Holiday</a></li>
-                </ul>
-        </div>
+        <div id="data-entry">
 
 
-        <div class="row">
-            <select class="form-control" id="holidayList">
-                <option>Martin Luther King Jr. Day</option>
-                <option>Presidents' Day</option>
-                <option>Memorial Day</option>
-                <option>Independence Day</option>
-                <option>Labor Day Weekend</option>
-                <option>Columbus Day</option>
-                <option>Veterans Day</option>
-                <option>Thanksgiving Day</option>
-                <option>Day After Thanksgiving</option>
-                <option>Christmas Eve</option>
-                <option>Christmas Day</option>
-                <option>Day After Christmas</option>
-                <option>New Year's Eve</option>
-                <option>New Year's Day</option>
-                <option>Day After New Year's</option>
-            </select>
-        </div>
-
-        <div id="user-data">
-
-            <!--User Location selection-->
             <div class="row">
-                    <h4>Your Location:</h4>
-
-
-                    <select class="form-control" id="from-stations">
-                        <option>Choose direction first</option>
-                    </select>
-
+                <h3>Choose Direction</h3>
             </div>
-            <!--Destination selection-->
             <div class="row">
+                    <ul class="nav nav-pills nav-justified direction">
+                        <li ><a href="#">Northbound</a></li>
+                        <li><a href="#">Southbound</a></li>
+                    </ul>
+            </div>
+            <div class="row">
+                <h3>Choose Day</h3>
+            </div>
+            <div class="row">
+                    <ul class="nav nav-pills nav-justified day">
+                        <li ><a href="#">Weekday</a></li>
+                        <li><a href="#">Saturday</a></li>
+                        <li><a href="#">Sunday</a></li>
+                        <li><a href="#" >Holiday</a></li>
+                    </ul>
+            </div>
 
-                        <h4>Destination:</h4>
+
+            <div class="row">
+                <select class="form-control" id="holidayList">
+                    <option>Martin Luther King Jr. Day</option>
+                    <option>Presidents' Day</option>
+                    <option>Memorial Day</option>
+                    <option>Independence Day</option>
+                    <option>Labor Day Weekend</option>
+                    <option>Columbus Day</option>
+                    <option>Veterans Day</option>
+                    <option>Thanksgiving Day</option>
+                    <option>Day After Thanksgiving</option>
+                    <option>Christmas Eve</option>
+                    <option>Christmas Day</option>
+                    <option>Day After Christmas</option>
+                    <option>New Year's Eve</option>
+                    <option>New Year's Day</option>
+                    <option>Day After New Year's</option>
+                </select>
+            </div>
+
+            <div id="user-data">
+
+                <!--User Location selection-->
+                <div class="row">
+                        <h4>Your Location:</h4>
 
 
-
-                        <select class="form-control" id="to-stations">
+                        <select class="form-control" id="from-stations">
                             <option>Choose direction first</option>
                         </select>
 
+                </div>
+                <!--Destination selection-->
+                <div class="row">
 
+                            <h4>Destination:</h4>
+
+
+
+                            <select class="form-control" id="to-stations">
+                                <option>Choose direction first</option>
+                            </select>
+
+
+                </div>
+                <!--Time selection-->
+                <div class="row">
+
+                            <h4>Time of Departure:</h4>
+
+
+
+                            <select class="form-control" id="d-time">
+                                <option>Choose your location</option>
+                            </select>
+
+
+                </div>
             </div>
-            <!--Time selection-->
-            <div class="row">
+        </div>
+        <div class="table-responsive" id="entire-sch">
+            <table class="table table-bordered ">
 
-                        <h4>Time of Departure:</h4>
-
-
-
-                        <select class="form-control" id="d-time">
-                            <option>Choose your location</option>
-                        </select>
-
-
-            </div>
-            <div class="row">
-                <p>
-                    <button type="button" data-toggle="modal" id="show-sch-btn" data-target="#myModal" class="btn btn-primary btn-lg pull-right">Show Schedule</button>
-                </p>
-            </div>
+                <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Train</th>
+                    <th>Station</th>
+                </tr>
+                </thead>
+                
+                <tbody id="schedule-table">
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>row or cell</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>action</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>need attention</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Indicates</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <p>
+                <button type="button" data-toggle="modal" id="show-sch-btn" data-target="#myModal" class="btn btn-primary btn-lg pull-right">Show Schedule</button>
+            </p>
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Train Schedule</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered ">
-                            <colgroup>
-                                <col class="col-xs-1">
-                                <col class="col-xs-7">
-                            </colgroup>
-                            <thead>
-                            <tr>
-                                <th>Time</th>
-                                <th>Train</th>
-                                <th>Station</th>
-                            </tr>
-                            </thead>
-                            <tbody id="schedule-table">
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td>row or cell</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td>action</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td>need attention</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td>Indicates</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+
 
 
     <script type="text/javascript">
@@ -281,12 +269,25 @@
         })
 
         $('#show-sch-btn').click( function () {
-//           $('#schedule-table').
-            //if the time of departure is not set, set to 0
-            //if(position.time == undefined){
-              //  position.time = 0;
-            //}
-            //console.log(position.time)
+            // if on schedule change to trip
+            if ($(this).text() == "Show Schedule"){
+                //change the text on the button
+                $(this).text("Change Trip")
+                $("#data-entry").fadeOut();
+                $("#entire-sch").fadeIn();
+
+                $("#user-data").text(dataState);
+            }
+            // if on trip change to schedule
+            else {
+                // set the text of the button
+                $(this).text("Show Schedule")
+                // save the current data
+                $("#data-entry").fadeIn();
+                $("#entire-sch").fadeOut();
+
+
+            }
 
         });
 
