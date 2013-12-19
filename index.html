@@ -255,9 +255,14 @@
             userLocation = $(this).val();
             // check to make sure its valid
             if(userLocation != "Select" && userLocation != "Choose your location"){
+                // save the position of the option selected
+                var d = $(this)[0].selectedIndex
+
                 // update the form
                 refresh();
                 updateFormTimeData();
+                updateFormDestinationData(d);
+
             } else {
                 // if not valid notify the user
                 $('#d-time').html('<option>Choose your location</option>')
@@ -266,11 +271,22 @@
 
         $('#d-time').change(function () {
             position.time = $(this)[0].selectedIndex
+
         })
 
         $('#show-sch-btn').click( function () {
             // if on schedule change to trip
             if ($(this).text() == "Show Schedule"){
+
+                // beginning
+                sData[position.station]["data"][position.time]
+
+                //end
+
+//                for(var x =0; x < sData[position.station]["data"][position.time]){
+
+//                }
+
                 //change the text on the button
                 $(this).text("Change Trip")
 
@@ -283,7 +299,7 @@
             else {
                 // set the text of the button
                 $(this).text("Show Schedule")
-                
+
                 // adjust views
                 $("#data-entry").fadeIn();
                 $("#entire-sch").fadeOut();
@@ -326,20 +342,6 @@
 
             /*
             *
-            * Set TO options
-            *
-            *
-            * */
-            var stringTo = '<option>Select</option>'
-
-            for (var s = 0; s < uniqStationsArr.length; s++){
-                stringTo += '<option>'+ uniqStationsArr[s] +'</option>';
-            }
-            document.getElementById("to-stations").innerHTML = ""
-            document.getElementById("to-stations").innerHTML = stringTo
-
-            /*
-            *
             * Set FROM options
             *
             * */
@@ -349,6 +351,27 @@
             }
             document.getElementById("from-stations").innerHTML = ""
             document.getElementById("from-stations").innerHTML = stringFrom
+        }
+
+        function updateFormDestinationData (from){
+            // get unique stations
+            var uniqStationsArr = unique(stationsArr)
+            // console.log(uniqStationsArr.length)
+
+            /*
+             *
+             * Set TO options
+             *
+             *
+             * */
+            var stringTo = '<option>Select</option>'
+            // from is the option selected
+            // since we dont want to include options prior we start from what the user selected
+            for (var s = from; s < uniqStationsArr.length; s++){
+                stringTo += '<option>'+ uniqStationsArr[s] +'</option>';
+            }
+            document.getElementById("to-stations").innerHTML = ""
+            document.getElementById("to-stations").innerHTML = stringTo
 
         }
 
