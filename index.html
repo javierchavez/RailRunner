@@ -171,6 +171,7 @@
         var sData;
         var stationsArr = [];   // station's names (string)
         var timesArr = []       // train times (string)
+        var position = {}       // speed up proc for getting data from ds
         var userLocation, userDestination;  // user set direction and day
 
         // Helper to find unique stations
@@ -259,6 +260,7 @@
         // get the user location and destination from drop downs
         $('#to-stations').change(function () {
             userDestination = $(this).val();
+
         });
         $('#from-stations').change(function () {
             //get the location of the user
@@ -273,8 +275,18 @@
             }
         })
 
+        $('#d-time').change(function () {
+            position.time = $(this)[0].selectedIndex
+        })
+
         $('#show-sch-btn').click( function () {
 //           $('#schedule-table').
+            //if the time of departure is not set, set to 0
+            if(position.time == undefined){
+                position.time = 0;
+            }
+            console.log(position.time)
+
         });
 
 
@@ -290,6 +302,7 @@
                     if((sData[i]["name"].indexOf(direction) != -1) && (sData[i]["name"].indexOf(day) != -1)){
                         // console.log(sData[i]["name"])
                         // get stations names
+                        position.station = i;
                         for (var x = 0; x < sData[i]["data"].length; x++){
                             stationsArr.push(sData[i]["data"][x]["station"])
                             if (userLocation == sData[i]["data"][x]["station"]){
@@ -298,6 +311,7 @@
                         }
                     }
                 }
+
             }
         }
 
@@ -310,6 +324,7 @@
             /*
             *
             * Set TO options
+            *
             *
             * */
             var stringTo = '<option>Select</option>'
