@@ -67,7 +67,7 @@
       <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="215" column="34" selection-start="7850" selection-end="7850" vertical-scroll-proportion="0.45736435" vertical-offset="2421" max-vertical-offset="4515">
+            <state line="228" column="35" selection-start="8226" selection-end="8226" vertical-scroll-proportion="0.2842377" vertical-offset="2750" max-vertical-offset="4515">
               <folding>
                 <element signature="e#4541#5078#0" expanded="false" />
                 <element signature="e#5337#5928#0" expanded="false" />
@@ -584,12 +584,12 @@
       <workItem from="1387394017638" duration="124000" />
       <workItem from="1387394155731" duration="15151000" />
       <workItem from="1387417579922" duration="2557000" />
-      <workItem from="1387420155057" duration="8114000" />
+      <workItem from="1387420155057" duration="8821000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74297000" />
+    <option name="totallyTimeSpent" value="75004000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1723" height="1126" extended-state="6" />
@@ -827,7 +827,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="215" column="34" selection-start="7850" selection-end="7850" vertical-scroll-proportion="0.45736435" vertical-offset="2421" max-vertical-offset="4515">
+        <state line="228" column="35" selection-start="8226" selection-end="8226" vertical-scroll-proportion="0.2842377" vertical-offset="2750" max-vertical-offset="4515">
           <folding>
             <element signature="e#4541#5078#0" expanded="false" />
             <element signature="e#5337#5928#0" expanded="false" />

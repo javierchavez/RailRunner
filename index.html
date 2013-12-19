@@ -224,9 +224,12 @@
 
         function refresh(){
             if(sData != null){
-
+                // clear current array
+                stationsArr = []
+                //sort through data
                 for (var i =0; i < sData.length;i++){
                     //add check for holiday(holidays)
+                    // find what data to use from data set
                     if((sData[i]["name"].indexOf(direction) != -1) && (sData[i]["name"].indexOf(day) != -1)){
                         // console.log(sData[i]["name"])
                         // get stations names
@@ -243,12 +246,9 @@
 
         function updateFormLocationData(){
 
-            for (var g =0; g < sData[0]["data"].length; g++){
-                stationsArr.push(sData[0]["data"][g]["station"]) //error
-            }
             // get unique stations
             var uniqStationsArr = unique(stationsArr)
-
+            console.log(uniqStationsArr.length)
 
             /*
             *
