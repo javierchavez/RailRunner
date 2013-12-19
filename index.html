@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
     <title>Rail Runner</title>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
@@ -68,48 +70,45 @@
 
             <!--User Location selection-->
             <div class="row">
-                <div class="row">
-                    <div class="col-md-4">
-                        <h4>Your Location:</h4>
-                    </div>
-                    <div class="col-md-4">
-                        <select class="form-control" id="from-stations">
-                            <option>Choose direction first</option>
-                        </select>
-                    </div>
-                </div>
+                    <h4>Your Location:</h4>
+
+
+                    <select class="form-control" id="from-stations">
+                        <option>Choose direction first</option>
+                    </select>
+
             </div>
             <!--Destination selection-->
             <div class="row">
-                <div class="row">
-                    <div class="col-md-4">
+
                         <h4>Destination:</h4>
-                    </div>
-                    <div class="col-md-4">
+
+
+
                         <select class="form-control" id="to-stations">
                             <option>Choose direction first</option>
                         </select>
-                    </div>
-                </div>
+
+
             </div>
             <!--Time selection-->
             <div class="row">
-                <div class="row">
-                    <div class="col-md-4">
+
                         <h4>Time of Departure:</h4>
-                    </div>
-                    <div class="col-md-4">
+
+
+
                         <select class="form-control" id="d-time">
                             <option>Choose your location</option>
                         </select>
-                    </div>
-                </div>
+
+
             </div>
-        </div>
-        <div class="row">
-            <p>
-                <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-lg pull-right">Show Schedule</button>
-            </p>
+            <div class="row">
+                <p>
+                    <button type="button" data-toggle="modal" id="show-sch-btn" data-target="#myModal" class="btn btn-primary btn-lg pull-right">Show Schedule</button>
+                </p>
+            </div>
         </div>
     </div>
 
@@ -119,14 +118,48 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    <h4 class="modal-title" id="myModalLabel">Train Schedule</h4>
                 </div>
                 <div class="modal-body">
-                    ...
-                </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered ">
+                            <colgroup>
+                                <col class="col-xs-1">
+                                <col class="col-xs-7">
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Train</th>
+                                <th>Station</th>
+                            </tr>
+                            </thead>
+                            <tbody id="schedule-table">
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>row or cell</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>action</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>need attention</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Indicates</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -240,6 +273,10 @@
             }
         })
 
+        $('#show-sch-btn').click( function () {
+//           $('#schedule-table').
+        });
+
 
         function refresh(){
             if(sData != null){
@@ -310,36 +347,6 @@
             document.getElementById("d-time").innerHTML = ""
             document.getElementById("d-time").innerHTML = stringTimes
         }
-
-        /*
-        *
-        * Toggle between schedule view and settings view
-        *
-        * */
-        var scheduleState, dataState = ""
-        $("#view-toggle-btn").click(function(){
-
-            // if on schedule change to trip
-           if ($(this).text() == "Show Schedule"){
-               //change the text on the button
-               $(this).text("Change Trip")
-               //save the schedule html
-               scheduleState = $("#user-data").html();
-               //set the data area to
-               $("#user-data").html(dataState);
-           }
-           // if on trip change to schedule
-           else {
-               // set the text of the button
-               $(this).text("Show Schedule")
-               // save the current data
-               dataState = $("#user-data").html();
-               //set the data area to
-               $("#user-data").html(scheduleState);
-           }
-        });
-
-
 
     </script>
 
