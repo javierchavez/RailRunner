@@ -119,7 +119,7 @@
                     <th>Station</th>
                 </tr>
                 </thead>
-                
+
                 <tbody id="schedule-table">
                 <tr>
                     <td></td>
@@ -273,16 +273,18 @@
             if ($(this).text() == "Show Schedule"){
                 //change the text on the button
                 $(this).text("Change Trip")
+
+                // adjust views
                 $("#data-entry").fadeOut();
                 $("#entire-sch").fadeIn();
 
-                $("#user-data").text(dataState);
             }
             // if on trip change to schedule
             else {
                 // set the text of the button
                 $(this).text("Show Schedule")
-                // save the current data
+                
+                // adjust views
                 $("#data-entry").fadeIn();
                 $("#entire-sch").fadeOut();
 
