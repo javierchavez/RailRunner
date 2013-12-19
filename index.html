@@ -270,7 +270,11 @@
         })
 
         $('#d-time').change(function () {
-            position.time = $(this)[0].selectedIndex
+            // to accidate for "Select" in options menu -1
+            position.time = $(this)[0].selectedIndex - 1
+            position.train = sData[position.station]["data"][position.time]["train"]
+            console.log(position.train)
+            console.log(position.time)
 
         })
 
