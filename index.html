@@ -27,7 +27,7 @@
         </div>
         <div class="row">
                 <ul class="nav nav-pills nav-justified direction">
-                    <li class="active"><a href="#">Northbound</a></li>
+                    <li ><a href="#">Northbound</a></li>
                     <li><a href="#">Southbound</a></li>
                 </ul>
         </div>
@@ -36,7 +36,7 @@
         </div>
         <div class="row">
                 <ul class="nav nav-pills nav-justified day">
-                    <li class="active"><a href="#">Weekday</a></li>
+                    <li ><a href="#">Weekday</a></li>
                     <li><a href="#">Saturday</a></li>
                     <li><a href="#">Sunday</a></li>
                     <li><a href="#" >Holiday</a></li>
@@ -112,98 +112,6 @@
             </p>
         </div>
     </div>
-
-
-
-
-
-    <!--<div class="panel-group" id="accordion">-->
-        <!--<div class="panel panel-default">-->
-            <!--<div class="panel-heading">-->
-                <!--<h4 class="panel-title">-->
-                    <!--<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">-->
-                        <!--Belen-->
-                    <!--</a>-->
-                <!--</h4>-->
-            <!--</div>-->
-            <!--<div id="collapseOne" class="panel-collapse collapse in">-->
-                <!--<div class="panel-body">-->
-                    <!--<div class="bs-example">-->
-                        <!--<table class="table table-hover">-->
-                            <!--<thead>-->
-                            <!--<tr>-->
-                                <!--<th>Ride</th>-->
-                                <!--<th>Time</th>-->
-                            <!--</tr>-->
-                            <!--</thead>-->
-                            <!--<tbody>-->
-                            <!--<tr>-->
-                                <!--<td>#504</td>-->
-                                <!--<td>3:55A</td>-->
-
-
-                            <!--</tr>-->
-                            <!--<tr>-->
-                                <!--<td>#102 exp</td>-->
-                                <!--<td>5:39A</td>-->
-
-
-                            <!--</tr>-->
-                            <!--<tr>-->
-                                <!--<td>#506</td>-->
-                                <!--<td>6:35A</td>-->
-
-                            <!--</tr>-->
-                            <!--</tbody>-->
-                        <!--</table>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="panel panel-default">-->
-            <!--<div class="panel-heading">-->
-                <!--<h4 class="panel-title">-->
-                    <!--<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">-->
-                        <!--Belen-->
-                    <!--</a>-->
-                <!--</h4>-->
-            <!--</div>-->
-            <!--<div id="collapseTwo" class="panel-collapse collapse in">-->
-                <!--<div class="panel-body">-->
-                    <!--<div class="bs-example">-->
-                        <!--<table class="table table-hover">-->
-                            <!--<thead>-->
-                            <!--<tr>-->
-                                <!--<th>Ride</th>-->
-                                <!--<th>Time</th>-->
-                            <!--</tr>-->
-                            <!--</thead>-->
-                            <!--<tbody>-->
-                            <!--<tr>-->
-                                <!--<td>#504</td>-->
-                                <!--<td>3:55A</td>-->
-
-
-                            <!--</tr>-->
-                            <!--<tr>-->
-                                <!--<td>#102 exp</td>-->
-                                <!--<td>5:39A</td>-->
-
-
-                            <!--</tr>-->
-                            <!--<tr>-->
-                                <!--<td>#506</td>-->
-                                <!--<td>6:35A</td>-->
-
-                            <!--</tr>-->
-                            <!--</tbody>-->
-                        <!--</table>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-
 
 
     <script type="text/javascript">
@@ -284,6 +192,7 @@
                 }
                 // the user clicked the direction
                 else {
+                    $('ul.day').find('.active').removeClass('active');
                     direction = $(this).parent().text();
                 }
 
