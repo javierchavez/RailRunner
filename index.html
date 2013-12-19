@@ -74,6 +74,7 @@
                     </div>
                     <div class="col-md-4">
                         <select class="form-control" id="from-stations">
+                            <option>Choose direction first</option>
                         </select>
                     </div>
                 </div>
@@ -86,6 +87,7 @@
                     </div>
                     <div class="col-md-4">
                         <select class="form-control" id="to-stations">
+                            <option>Choose direction first</option>
                         </select>
                     </div>
                 </div>
@@ -98,6 +100,7 @@
                     </div>
                     <div class="col-md-4">
                         <select class="form-control" id="d-time">
+                            <option>Choose day first</option>
                         </select>
                     </div>
                 </div>
@@ -206,9 +209,9 @@
     <script type="text/javascript">
         // Station data from server
         var sData;
-        var stationsArr = [];
-        var timesArr = []
-        var userLocation, userDestination;
+        var stationsArr = [];   // station's names (string)
+        var timesArr = []       // train times (string)
+        var userLocation, userDestination;  // user set direction and day
 
         // Helper to find unique stations
         var unique = function(origArr) {
@@ -235,9 +238,6 @@
         var ajax = {
             parseJSONP: function(result){
                 sData = result;
-                //refresh();
-                //updateFormData();
-
             }
         }
 
@@ -259,6 +259,10 @@
                 }
         );
 
+        /*
+        *
+        * Highlight button based on user click
+        * */
         var direction, day;
         $(document).ready(function () {
             $('ul.nav > li a').click(function (e) {
@@ -328,7 +332,11 @@
             var uniqStationsArr = unique(stationsArr)
 
 
-            /*This is for the TO field*/
+            /*
+            *
+            * Set TO options
+            *
+            * */
             var stringTo = ""
             for (var s = 0; s < uniqStationsArr.length; s++){
                 stringTo += '<option>'+ uniqStationsArr[s] +'</option>';
@@ -336,7 +344,11 @@
             document.getElementById("to-stations").innerHTML = ""
             document.getElementById("to-stations").innerHTML = stringTo
 
-            /*This is for the FROM field*/
+            /*
+            *
+            * Set FROM options
+            *
+            * */
             var stringFrom = ""
             for (var s = 0; s < uniqStationsArr.length; s++){
                 stringFrom += '<option>'+ uniqStationsArr[s] +'</option>';
@@ -344,7 +356,11 @@
             document.getElementById("from-stations").innerHTML = ""
             document.getElementById("from-stations").innerHTML = stringFrom
 
-            /*This is for the TIME field*/
+            /*
+            *
+            * Set TIME options
+            *
+            * */
             var stringTimes = ""
             for (var s = 0; s < timesArr.length; s++){
                 stringTimes += '<option>'+ timesArr[s] +'</option>';
@@ -354,8 +370,10 @@
         }
 
         /*
-            Toggle between schedule view and settings view
-        */
+        *
+        * Toggle between schedule view and settings view
+        *
+        * */
         var scheduleState, dataState = ""
         $("#view-toggle-btn").click(function(){
 
