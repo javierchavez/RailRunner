@@ -108,10 +108,29 @@
         </div>
         <div class="row">
             <p>
-                <button type="button" id="view-toggle-btn" class="btn btn-primary btn-lg pull-right">Show Schedule</button>
+                <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-lg pull-right">Show Schedule</button>
             </p>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
 
     <script type="text/javascript">
@@ -226,6 +245,7 @@
             if(sData != null){
                 // clear current array
                 stationsArr = []
+                timesArr = []
                 //sort through data
                 for (var i =0; i < sData.length;i++){
                     //add check for holiday(holidays)
@@ -248,7 +268,7 @@
 
             // get unique stations
             var uniqStationsArr = unique(stationsArr)
-            console.log(uniqStationsArr.length)
+            // console.log(uniqStationsArr.length)
 
             /*
             *
@@ -256,6 +276,7 @@
             *
             * */
             var stringTo = '<option>Select</option>'
+
             for (var s = 0; s < uniqStationsArr.length; s++){
                 stringTo += '<option>'+ uniqStationsArr[s] +'</option>';
             }
