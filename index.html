@@ -100,7 +100,7 @@
                     </div>
                     <div class="col-md-4">
                         <select class="form-control" id="d-time">
-                            <option>Choose day first</option>
+                            <option>Choose your location</option>
                         </select>
                     </div>
                 </div>
@@ -200,7 +200,7 @@
 
 
                 refresh(); //must be called first
-                updateFormData();
+                updateFormLocationData();
             });
         });
 
@@ -209,7 +209,16 @@
             userDestination = $(this).val();
         });
         $('#from-stations').change(function () {
+            //get the location of the user
             userLocation = $(this).val();
+            // check to make sure its valid
+            if(userLocation != "Select" && userLocation != "Choose your location"){
+                // update the form
+                updateFormTimeData();
+            } else {
+                // if not valid notify the user
+                $('#d-time').html('<option>Choose your location</option>')
+            }
         })
 
 
@@ -232,10 +241,10 @@
             }
         }
 
-        function updateFormData(){
+        function updateFormLocationData(){
 
             for (var g =0; g < sData[0]["data"].length; g++){
-                stationsArr.push(sData[0]["data"][g]["station"])
+                stationsArr.push(sData[0]["data"][g]["station"]) //error
             }
             // get unique stations
             var uniqStationsArr = unique(stationsArr)
@@ -246,7 +255,7 @@
             * Set TO options
             *
             * */
-            var stringTo = ""
+            var stringTo = '<option>Select</option>'
             for (var s = 0; s < uniqStationsArr.length; s++){
                 stringTo += '<option>'+ uniqStationsArr[s] +'</option>';
             }
@@ -258,18 +267,21 @@
             * Set FROM options
             *
             * */
-            var stringFrom = ""
+            var stringFrom = '<option>Select</option>'
             for (var s = 0; s < uniqStationsArr.length; s++){
                 stringFrom += '<option>'+ uniqStationsArr[s] +'</option>';
             }
             document.getElementById("from-stations").innerHTML = ""
             document.getElementById("from-stations").innerHTML = stringFrom
 
+        }
+
+        function updateFormTimeData() {
             /*
-            *
-            * Set TIME options
-            *
-            * */
+             *
+             * Set TIME options
+             *
+             * */
             var stringTimes = ""
             for (var s = 0; s < timesArr.length; s++){
                 stringTimes += '<option>'+ timesArr[s] +'</option>';
@@ -293,7 +305,7 @@
                //save the schedule html
                scheduleState = $("#user-data").html();
                //set the data area to
-               $("#user-data").text(dataState);
+               $("#user-data").html(dataState);
            }
            // if on trip change to schedule
            else {
