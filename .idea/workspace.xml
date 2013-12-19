@@ -67,7 +67,7 @@
       <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="283" column="59" selection-start="10306" selection-end="10306" vertical-scroll-proportion="0.57253885" vertical-offset="3353" max-vertical-offset="5160">
+            <state line="313" column="17" selection-start="11515" selection-end="11515" vertical-scroll-proportion="0.61139894" vertical-offset="3773" max-vertical-offset="5160">
               <folding>
                 <element signature="e#6538#7075#0" expanded="false" />
                 <element signature="e#7334#7925#0" expanded="false" />
@@ -575,12 +575,12 @@
       <workItem from="1387394017638" duration="124000" />
       <workItem from="1387394155731" duration="15151000" />
       <workItem from="1387417579922" duration="2557000" />
-      <workItem from="1387420155057" duration="19102000" />
+      <workItem from="1387420155057" duration="19752000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85285000" />
+    <option name="totallyTimeSpent" value="85935000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1727" height="1126" extended-state="6" />
@@ -818,7 +818,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="283" column="59" selection-start="10306" selection-end="10306" vertical-scroll-proportion="0.57253885" vertical-offset="3353" max-vertical-offset="5160">
+        <state line="313" column="17" selection-start="11515" selection-end="11515" vertical-scroll-proportion="0.61139894" vertical-offset="3773" max-vertical-offset="5160">
           <folding>
             <element signature="e#6538#7075#0" expanded="false" />
             <element signature="e#7334#7925#0" expanded="false" />
