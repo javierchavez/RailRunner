@@ -356,18 +356,26 @@
         /*
             Toggle between schedule view and settings view
         */
-        var scheduleState, dataState
+        var scheduleState, dataState = ""
         $("#view-toggle-btn").click(function(){
+
+            // if on schedule change to trip
            if ($(this).text() == "Show Schedule"){
                //change the text on the button
                $(this).text("Change Trip")
-               //
-               currentState = $("#user-data").html();
-               $("#user-data").text("");
+               //save the schedule html
+               scheduleState = $("#user-data").html();
+               //set the data area to
+               $("#user-data").text(dataState);
            }
+           // if on trip change to schedule
            else {
+               // set the text of the button
                $(this).text("Show Schedule")
-               $("#user-data").html(currentState);
+               // save the current data
+               dataState = $("#user-data").html();
+               //set the data area to
+               $("#user-data").html(scheduleState);
            }
         });
 
