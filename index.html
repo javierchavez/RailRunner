@@ -247,7 +247,6 @@
 
                 // console.log("The user choose: DAY: " + day +" DIRECTION: " + direction)
 
-
                 var stationData = findStation(sData, direction, day);
 
                 position.station = stationData.position;
@@ -266,6 +265,7 @@
             }
 
         });
+
         $('#from-stations').change(function () {
             //get the location of the user
             userLocation = $(this).val();
@@ -277,7 +277,7 @@
                 // update the form
 //                refresh();
 
-                var timeData = findTimes(sData,direction, day, userLocation);
+                var timeData = findTimes(sData,position.station, userLocation);
 
                 timesArr = timeData.arrdata;
 
@@ -314,7 +314,7 @@
                 // beginning
                 var train = sData[position.station]["data"][position.time]["train"];
 
-                console.log(train);
+//                console.log(train);
 
 
 
@@ -325,7 +325,7 @@
 
                     test = endData.train;
 
-                    console.log(test);
+//                    console.log(test);
 
 
                 } else {
@@ -359,16 +359,6 @@
         });
 
 
-        function refresh(){
-            if(sData != null){
-
-
-
-
-
-
-            }
-        }
 
         function updateFormLocationData(){
 
@@ -438,27 +428,37 @@
                     for (var x = 0; x < arr[i]["data"].length; x++){
                         tmp.arrdata.push(arr[i]["data"][x]["station"]);
                     }
+                    break;
                 }
             }
             return tmp
         }
 
-        function findTimes(arr, s1, s2, loc) {
+        function findTimes(arr, p, loc) {
             var tmp = {arrdata:[]};
             //sort through data
-            for (var i =0; i < arr.length;i++) {
-
-                // find what data to use from data set
-                if((arr[i]["name"].indexOf(s1) != -1) && (arr[i]["name"].indexOf(s2) != -1)){
-                    tmp.position = i;
-
-                    for (var x = 0; x < arr[i]["data"].length; x++){
-                        if (loc == sData[i]["data"][x]["station"]){
-                            tmp.arrdata.push(arr[i]["data"][x]["time"]);
-                        }
-                    }
+//            for (var i =0; i < arr.length;i++) {
+//
+//                // find what data to use from data set
+//                if((arr[i]["name"].indexOf(s1) != -1) && (arr[i]["name"].indexOf(s2) != -1)){
+//                    tmp.position = i;
+//
+//                    for (var x = 0; x < arr[i]["data"].length; x++){
+//                        if (loc == sData[i]["data"][x]["station"]){
+//                            tmp.arrdata.push(arr[i]["data"][x]["time"]);
+//                        }
+//                    }
+//                    break;
+//                }
+//            }
+            console.log(p)
+            for (var x = 0; x < arr[p]["data"].length; x++){
+                if (loc == sData[p]["data"][x]["station"]){
+                    tmp.arrdata.push(arr[p]["data"][x]["time"]);
                 }
             }
+
+
             return tmp
         }
 
