@@ -195,22 +195,19 @@
         };
 
         // get data from server and handle return
-        $.ajax(
-                {
-                    type       : "GET",
-                    url        : "http://dev.appliciti.com/nmrx/config/work/json-all-schedules/",
-                    dataType   : 'jsonp',
-                    success    : function(response) {
-                                    console.log("Data loaded successfully");
-                                    ajax.parseJSONP(response);
-                    },
-                    error      : function() {
-                        alert('Not working!');
-                        console.log("Something went wrong trying to download data");
-                    }
-
+        $.ajax ({
+                type       : "GET",
+                url        : "http://dev.appliciti.com/nmrx/config/work/json-all-schedules/",
+                dataType   : 'jsonp',
+                success    : function(response) {
+                                console.log("Data loaded successfully");
+                                ajax.parseJSONP(response);
+                },
+                error      : function() {
+                    alert('Not working!');
+                    console.log("Something went wrong trying to download data");
                 }
-        );
+        });
 
         /*
         *
@@ -314,16 +311,17 @@
                 // beginning
                 var train = sData[position.station]["data"][position.time]["train"];
 
-//                console.log(train);
+                console.log(train);
 
 
 
                 // check to make sure its valid
                 if(userDestination != "Select" && userDestination != "Choose your location"){
 
-                    var endData = findTimes(sData,direction, day, userDestination);
+//                    var endData = findTimes(sData,direction, day, userDestination);
 
-                    test = endData.train;
+
+//                    test = endData.train;
 
 //                    console.log(test);
 
@@ -341,9 +339,6 @@
                 $("#entire-sch").fadeIn();
 
             }
-
-
-
             // if on trip change to schedule
             else {
                 // set the text of the button
@@ -451,7 +446,7 @@
 //                    break;
 //                }
 //            }
-            console.log(p)
+            console.log("Bound: "+p)
             for (var x = 0; x < arr[p]["data"].length; x++){
                 if (loc == sData[p]["data"][x]["station"]){
                     tmp.arrdata.push(arr[p]["data"][x]["time"]);
