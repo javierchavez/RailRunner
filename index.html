@@ -15,33 +15,36 @@
 
 
     <style type="text/css">
-        body { background-color: #77171E}
-        /*.title {color: #DC9125 }*/
-        .title {color: #ffffff; background-color: #8C8C8E; padding-left: 3%; padding-top: 2%; padding-bottom: 2%;
-            text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
-            -webkit-box-shadow: 0 4px 4px -2px #000000;
-            -moz-box-shadow: 0 4px 4px -2px #000000;
-            box-shadow: 0 4px 4px -2px #000000;}
-        a{ color: #ffffff}
         #holidayList { display: none; }
         #entire-sch { display: none; }
-        .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
-            background-color: #DC9125;
-            border-color: #9F418F;
+        /*body { background-color: #77171E}*/
+        /*.container { }*/
+        /*.title {color: #DC9125 }*/
+        /*.title {color: #ffffff; background-color: #8C8C8E; padding-left: 3%; padding-top: 2%; padding-bottom: 2%;*/
+            /*text-shadow: 2px 4px 3px rgba(0,0,0,0.3);*/
+            /*-webkit-box-shadow: 0 4px 4px -2px #000000;*/
+            /*-moz-box-shadow: 0 4px 4px -2px #000000;*/
+            /*box-shadow: 0 4px 4px -2px #000000;}*/
+        /*a{ color: #ffffff}*/
+    /**/
+        /*.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {*/
+            /*background-color: #DC9125;*/
+            /*border-color: #9F418F;*/
 
             /*yello #DC9125*/
             /*gray #8C8C8E*/
-        }
-        .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
-            background-color: #DC9125;
-            border-color: #31347B;
-        }
+        /*}*/
+        /*.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {*/
+            /*background-color: #DC9125;*/
+            /*border-color: #31347B;*/
+        /*}*/
 
-        .btn
-        {
-            background-color: #DC9125;
-            border-color: #9F418F;
-        }
+        /*.btn*/
+        /*{*/
+            /*background-color: #DC9125;*/
+            /*border-color: #9F418F;*/
+        /*}*/
+        /*.submit-btn { margin-top: 4%}*/
     </style>
 
 </head>
@@ -135,6 +138,7 @@
             </div>
         </div>
         <div class="table-responsive" id="entire-sch">
+            
             <table class="table table-bordered ">
 
                 <thead>
@@ -169,14 +173,14 @@
                 </tbody>
             </table>
         </div>
-        <div class="row">
-            <p>
+        <div class="row submit-btn">
+
                 <button type="button"
                         data-toggle="modal"
                         id="show-sch-btn"
                         data-target="#myModal"
                         class="btn btn-primary btn-lg pull-right">Show Schedule</button>
-            </p>
+
         </div>
     </div>
 
@@ -220,8 +224,7 @@
         };
 
         // get data from server and handle return
-        $.ajax(
-                {
+        $.ajax({
                     type       : "GET",
                     url        : "http://dev.appliciti.com/nmrx/config/work/json-all-schedules/",
                     dataType   : 'jsonp',
@@ -233,9 +236,7 @@
                         alert('Not working!');
                         console.log("Something went wrong trying to download data");
                     }
-
-                }
-        );
+        });
 
         /*
         *
@@ -309,26 +310,45 @@
         $('#d-time').change(function () {
             // to accommodate for "Select" in options menu -1
             position.time = $(this)[0].selectedIndex - 1;
-            position.train = sData[position.station]["data"][position.time]["train"];
-            //console.log(position.train)
+            position.trainName = sData[position.station]["data"][position.time]["train"];
+            console.log(position.trainName)
             //console.log(position.time)
 
         });
 
+
         $('#show-sch-btn').click( function () {
             // if on schedule change to trip
             if ($(this).text() == "Show Schedule"){
-
+                var sch = []
                 // beginning
-                var b = sData[position.station]["data"][position.time];
+                var b = sData[position.station]["data"];
 
-                //end
-//                sData[position.endstation ]["data"][position.time]
+                console.log(position.time)
+
+                for (var x = position.time; x < sData[position.station]["data"].length; x++) {
+                    if(b[x]["train"] == position.trainName){
+                        sch.push(sData[position.station]["data"][x])
+                        console.log("found train "+b[x]["train"])
+                        if(b[x]["station"] == userDestination){
+
+                            break;
+                        }
+                    }
+
+                }
+                var schl = "";
+                for (var c =0; c < sch.length; c++){
+                    schl += '<tr>' +
+                            '<td>'+ sch[c]["time"] +'</td>' +
+                            '<td>'+ sch[c]["train"] +'</td>' +
+                            '<td>'+ sch[c]["station"] +'</td></tr>';
+                }
 
 
-//                for(var x =0; x < sData[position.station]["data"][position.time]){
+                document.getElementById("schedule-table").innerHTML = "";
+                document.getElementById("schedule-table").innerHTML = schl;
 
-//                }
 
                 //change the text on the button
                 $(this).text("Change Trip");
