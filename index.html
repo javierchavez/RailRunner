@@ -146,7 +146,11 @@
         </div>
         <div class="row">
             <p>
-                <button type="button" data-toggle="modal" id="show-sch-btn" data-target="#myModal" class="btn btn-primary btn-lg pull-right">Show Schedule</button>
+                <button type="button"
+                        data-toggle="modal"
+                        id="show-sch-btn"
+                        data-target="#myModal"
+                        class="btn btn-primary btn-lg pull-right">Show Schedule</button>
             </p>
         </div>
     </div>
@@ -158,8 +162,8 @@
         // Station data from server
         var sData;
         var stationsArr = [];   // station's names (string)
-        var timesArr = []       // train times (string)
-        var position = {}       // speed up proc for getting data from ds
+        var timesArr = [];      // train times (string)
+        var position = {};       // speed up proc for getting data from ds
         var userLocation, userDestination;  // user set direction and day
 
         // Helper to find unique stations
@@ -188,7 +192,7 @@
             parseJSONP: function(result){
                 sData = result;
             }
-        }
+        };
 
         // get data from server and handle return
         $.ajax(
@@ -197,12 +201,12 @@
                     url        : "http://dev.appliciti.com/nmrx/config/work/json-all-schedules/",
                     dataType   : 'jsonp',
                     success    : function(response) {
-                        console.log("Data loaded successfully")
-                        ajax.parseJSONP(response);
+                                    console.log("Data loaded successfully");
+                                    ajax.parseJSONP(response);
                     },
                     error      : function() {
                         alert('Not working!');
-                        console.log("Something went wrong trying to download data")
+                        console.log("Something went wrong trying to download data");
                     }
 
                 }
@@ -220,15 +224,19 @@
                 $(this).parent().addClass('active');
 
                 // if the user clicked a Day option
-                if($(this).text() == "Weekday" || $(this).text() == "Saturday" || $(this).text() == "Sunday" || $(this).text() == "Holiday"){
+                if($(this).text() == "Weekday"
+                        || $(this).text() == "Saturday"
+                        || $(this).text() == "Sunday"
+                        || $(this).text() == "Holiday"){
+
                     //get the day that the user clicked
                     day = $(this).parent().text();
 
                     // if user clicked holiday then update DOM
                     if($(this).text() == "Holiday"){
-                        $('#holidayList').css({"display":"inline"})
+                        $('#holidayList').css({"display":"inline"});
                     } else {
-                        $('#holidayList').css({"display":"none"})
+                        $('#holidayList').css({"display":"none"});
                     }
                 }
                 // the user clicked the direction
@@ -249,6 +257,10 @@
         $('#to-stations').change(function () {
             userDestination = $(this).val();
 
+            if(userDestination != "Select" || userDestination != "Choose your location"){
+                position.endstation = $(this)[0].selectedIndex
+            }
+
         });
         $('#from-stations').change(function () {
             //get the location of the user
@@ -256,7 +268,7 @@
             // check to make sure its valid
             if(userLocation != "Select" && userLocation != "Choose your location"){
                 // save the position of the option selected
-                var d = $(this)[0].selectedIndex
+                var d = $(this)[0].selectedIndex;
 
                 // update the form
                 refresh();
@@ -267,32 +279,34 @@
                 // if not valid notify the user
                 $('#d-time').html('<option>Choose your location</option>')
             }
-        })
+        });
 
         $('#d-time').change(function () {
-            // to accidate for "Select" in options menu -1
-            position.time = $(this)[0].selectedIndex - 1
-            position.train = sData[position.station]["data"][position.time]["train"]
-            console.log(position.train)
-            console.log(position.time)
+            // to accommodate for "Select" in options menu -1
+            position.time = $(this)[0].selectedIndex - 1;
+            position.train = sData[position.station]["data"][position.time]["train"];
+            //console.log(position.train)
+            //console.log(position.time)
 
-        })
+        });
 
         $('#show-sch-btn').click( function () {
             // if on schedule change to trip
             if ($(this).text() == "Show Schedule"){
 
                 // beginning
-                sData[position.station]["data"][position.time]
+                var b = sData[position.station]["data"][position.time];
 
                 //end
+//                sData[position.endstation ]["data"][position.time]
+
 
 //                for(var x =0; x < sData[position.station]["data"][position.time]){
 
 //                }
 
                 //change the text on the button
-                $(this).text("Change Trip")
+                $(this).text("Change Trip");
 
                 // adjust views
                 $("#data-entry").fadeOut();
@@ -302,7 +316,7 @@
             // if on trip change to schedule
             else {
                 // set the text of the button
-                $(this).text("Show Schedule")
+                $(this).text("Show Schedule");
 
                 // adjust views
                 $("#data-entry").fadeIn();
@@ -317,8 +331,8 @@
         function refresh(){
             if(sData != null){
                 // clear current array
-                stationsArr = []
-                timesArr = []
+                stationsArr = [];
+                timesArr = [];
                 //sort through data
                 for (var i =0; i < sData.length;i++){
                     //add check for holiday(holidays)
@@ -328,9 +342,9 @@
                         // get stations names
                         position.station = i;
                         for (var x = 0; x < sData[i]["data"].length; x++){
-                            stationsArr.push(sData[i]["data"][x]["station"])
+                            stationsArr.push(sData[i]["data"][x]["station"]);
                             if (userLocation == sData[i]["data"][x]["station"]){
-                                timesArr.push(sData[i]["data"][x]["time"])
+                                timesArr.push(sData[i]["data"][x]["time"]);
                             }
                         }
                     }
@@ -341,7 +355,7 @@
         function updateFormLocationData(){
 
             // get unique stations
-            var uniqStationsArr = unique(stationsArr)
+            var uniqStationsArr = unique(stationsArr);
             // console.log(uniqStationsArr.length)
 
             /*
@@ -349,17 +363,17 @@
             * Set FROM options
             *
             * */
-            var stringFrom = '<option>Select</option>'
+            var stringFrom = '<option>Select</option>';
             for (var s = 0; s < uniqStationsArr.length; s++){
                 stringFrom += '<option>'+ uniqStationsArr[s] +'</option>';
             }
-            document.getElementById("from-stations").innerHTML = ""
-            document.getElementById("from-stations").innerHTML = stringFrom
+            document.getElementById("from-stations").innerHTML = "";
+            document.getElementById("from-stations").innerHTML = stringFrom;
         }
 
         function updateFormDestinationData (from){
             // get unique stations
-            var uniqStationsArr = unique(stationsArr)
+            var uniqStationsArr = unique(stationsArr);
             // console.log(uniqStationsArr.length)
 
             /*
@@ -368,14 +382,14 @@
              *
              *
              * */
-            var stringTo = '<option>Select</option>'
+            var stringTo = '<option>Select</option>';
             // from is the option selected
             // since we dont want to include options prior we start from what the user selected
             for (var s = from; s < uniqStationsArr.length; s++){
                 stringTo += '<option>'+ uniqStationsArr[s] +'</option>';
             }
-            document.getElementById("to-stations").innerHTML = ""
-            document.getElementById("to-stations").innerHTML = stringTo
+            document.getElementById("to-stations").innerHTML = "";
+            document.getElementById("to-stations").innerHTML = stringTo;
 
         }
 
@@ -385,12 +399,12 @@
              * Set TIME options
              *
              * */
-            var stringTimes = '<option>Select</option>'
+            var stringTimes = '<option>Select</option>';
             for (var s = 0; s < timesArr.length; s++){
                 stringTimes += '<option>'+ timesArr[s] +'</option>';
             }
-            document.getElementById("d-time").innerHTML = ""
-            document.getElementById("d-time").innerHTML = stringTimes
+            document.getElementById("d-time").innerHTML = "";
+            document.getElementById("d-time").innerHTML = stringTimes;
         }
 
     </script>
