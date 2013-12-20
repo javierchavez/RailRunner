@@ -15,8 +15,33 @@
 
 
     <style type="text/css">
+        body { background-color: #77171E}
+        /*.title {color: #DC9125 }*/
+        .title {color: #ffffff; background-color: #8C8C8E; padding-left: 3%; padding-top: 2%; padding-bottom: 2%;
+            text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+            -webkit-box-shadow: 0 4px 4px -2px #000000;
+            -moz-box-shadow: 0 4px 4px -2px #000000;
+            box-shadow: 0 4px 4px -2px #000000;}
+        a{ color: #ffffff}
         #holidayList { display: none; }
         #entire-sch { display: none; }
+        .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+            background-color: #DC9125;
+            border-color: #9F418F;
+
+            /*yello #DC9125*/
+            /*gray #8C8C8E*/
+        }
+        .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+            background-color: #DC9125;
+            border-color: #31347B;
+        }
+
+        .btn
+        {
+            background-color: #DC9125;
+            border-color: #9F418F;
+        }
     </style>
 
 </head>
@@ -28,7 +53,7 @@
 
 
             <div class="row">
-                <h3>Choose Direction</h3>
+                <h3 class="title">Choose Direction</h3>
             </div>
             <div class="row">
                     <ul class="nav nav-pills nav-justified direction">
@@ -37,7 +62,7 @@
                     </ul>
             </div>
             <div class="row">
-                <h3>Choose Day</h3>
+                <h3 class="title">Choose Day</h3>
             </div>
             <div class="row">
                     <ul class="nav nav-pills nav-justified day">
@@ -73,7 +98,7 @@
 
                 <!--User Location selection-->
                 <div class="row">
-                        <h4>Your Location:</h4>
+                        <h4 class="title" >Your Location:</h4>
 
 
                         <select class="form-control" id="from-stations">
@@ -84,7 +109,7 @@
                 <!--Destination selection-->
                 <div class="row">
 
-                            <h4>Destination:</h4>
+                            <h4 class="title">Destination:</h4>
 
 
 
@@ -97,7 +122,7 @@
                 <!--Time selection-->
                 <div class="row">
 
-                            <h4>Time of Departure:</h4>
+                            <h4 class="title">Time of Departure:</h4>
 
 
 
@@ -324,7 +349,6 @@
 
 
             }
-
         });
 
 
