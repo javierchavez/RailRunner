@@ -255,7 +255,7 @@
 
         // get the user location and destination from drop downs
         $('#to-stations').change(function () {
-            userDestination = $(this).val();
+                userDestination = $(this).val();
 
             if(userDestination != "Select" || userDestination != "Choose your location"){
                 position.endstation = $(this)[0].selectedIndex
@@ -285,8 +285,8 @@
             // to accommodate for "Select" in options menu -1
             position.time = $(this)[0].selectedIndex - 1;
             position.train = sData[position.station]["data"][position.time]["train"];
-            //console.log(position.train)
-            //console.log(position.time)
+
+
 
         });
 
@@ -297,8 +297,12 @@
                 // beginning
                 var b = sData[position.station]["data"][position.time];
 
+                console.log(b);
+
                 //end
-//                sData[position.endstation ]["data"][position.time]
+                var e = sData[position.station]["data"][position.endstation]
+
+                console.log(e);
 
 
 //                for(var x =0; x < sData[position.station]["data"][position.time]){
@@ -333,8 +337,17 @@
                 // clear current array
                 stationsArr = [];
                 timesArr = [];
+
+
+                var myd = findStation(sData, direction, day)
+
+                position.station = d.position;
+                console.log(d)
+
+
+
                 //sort through data
-                for (var i =0; i < sData.length;i++){
+                for (var i =0; i < sData.length;i++) {
                     //add check for holiday(holidays)
                     // find what data to use from data set
                     if((sData[i]["name"].indexOf(direction) != -1) && (sData[i]["name"].indexOf(day) != -1)){
@@ -405,6 +418,37 @@
             }
             document.getElementById("d-time").innerHTML = "";
             document.getElementById("d-time").innerHTML = stringTimes;
+        }
+
+
+        function findStation(arr, s1, s2) {
+            var tmp = {traindata:[]};
+            //sort through data
+            for (var i =0; i < arr.length;i++) {
+
+                // find what data to use from data set
+                if((arr[i]["name"].indexOf(s1) != -1) && (arr[i]["name"].indexOf(s2) != -1)){
+                    tmp.position = i;
+
+                    for (var x = 0; x < arr[i]["data"].length; x++){
+                        tmp.traindata.push(arr[i]["data"][x]["station"]);
+//                        if (userLocation == sData[i]["data"][x]["station"]){
+//                            timesArr.push(sData[i]["data"][x]["time"]);
+//                        }
+                    }
+                }
+            }
+            return tmp
+        }
+
+        function searchForStation(arr, s1) {
+
+            return 1
+        }
+
+        function getStations(){
+
+            return []
         }
 
     </script>
