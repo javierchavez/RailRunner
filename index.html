@@ -18,14 +18,13 @@
 
         #holidayList { display: none; }
         #entire-sch { display: none; }
-        /*body { background-color: #77171E}*/
-        /*.container { }*/
         .title {padding-left: 3%; }
-        /*.title {color: #ffffff; background-color: #8C8C8E; padding-left: 3%; padding-top: 2%; padding-bottom: 2%;*/
-            /*text-shadow: 2px 4px 3px rgba(0,0,0,0.3);*/
-            /*-webkit-box-shadow: 0 4px 4px -2px #000000;*/
-            /*-moz-box-shadow: 0 4px 4px -2px #000000;*/
-            /*box-shadow: 0 4px 4px -2px #000000;}*/
+        @media (min-width: 320px){
+            .submit-btn { padding-right: 3%; padding-bottom: 3%}
+        }
+
+
+
         a{ color: #DC9125 }
 
         /*h4{ color: #DC9125 }*/
@@ -75,7 +74,7 @@
                 <h4 class="title">Choose Direction</h4>
             </div>
             <div class="row">
-                    <ul class="nav nav-pills nav-justified direction">
+                    <ul class="nav nav-pills direction">
                         <li ><a href="#">Northbound</a></li>
                         <li><a href="#">Southbound</a></li>
                     </ul>
@@ -84,7 +83,7 @@
                 <h4 class="title">Choose Day</h4>
             </div>
             <div class="row">
-                    <ul class="nav nav-pills nav-justified day">
+                    <ul class="nav nav-pills  day">
                         <li ><a href="#">Weekday</a></li>
                         <li><a href="#">Saturday</a></li>
                         <li><a href="#">Sunday</a></li>
@@ -184,13 +183,9 @@
             </table>
         </div>
         <div class="row submit-btn">
-
                 <button type="button"
-
                         id="show-sch-btn"
-
                         class="btn btn-primary btn-lg pull-right">Show Schedule</button>
-
         </div>
     </div>
     <!-- Modal -->
@@ -405,9 +400,6 @@
                     '<h3>Service: </h3>' +data["description"] )
 
             $('#myModal').modal('show');
-
-
-
         });
 
 
@@ -445,16 +437,15 @@
                 var userTime = $('#d-time').val();
 
 
-                //using the train numebr get the object
+                //using the train number get the object
                 for(var x =0; x < directionArray.length; x++){
                     if(directionArray[x]["train"] == trainNum){
                         sch.push(directionArray[x])
                     }
                 }
 
-
+                // remove trailing elements while its ont
                 for(var i = sch.length - 1; i >= 0; i--) {
-
                     if(sch[i]["station"] != userDes) {
                         sch.removeByIndex(i);
                     } else if (sch[i]["station"] == userDes){
@@ -463,15 +454,9 @@
 
                 }
 
-                for(var x =0; x < sch.length; x++){
-                    if(sch[x]["station"] == userLoc){
-                      console.log("found at " + x)
-                    }
-                }
-
-                var c =0;
-                while(sch[c]["station"] != userLoc){
-                    sch.removeByIndex(c);
+                // removing zero element while not the user's location
+                while(sch[0]["station"] != userLoc){
+                    sch.removeByIndex(0);
                 }
 
                 var schl = "";
@@ -553,28 +538,26 @@
             document.getElementById("from-stations").innerHTML = stringFrom;
         }
 
-        function updateUserDestSelector (from, time, index){
+        function updateUserDestSelector (from, time){
             // get unique stations
             var arr = [];
+
 
             //getting all the unique station names
 
             for(var x =0; x < directionArray.length; x++){
                 if(directionArray[x]["station"] == from && directionArray[x]["time"] == time){
-                    trainNum =  directionArray[x]["train"]
+                    trainNum =  directionArray[x]["train"];
                     break;
                 }
             }
 
             for(var x =0; x < directionArray.length; x++){
-                console.log(directionArray[x]["train"] )
+                console.log(directionArray[x]["train"] );
                 if(directionArray[x]["train"].indexOf(trainNum) > -1){
-                    arr.push(directionArray[x])
+                    arr.push(directionArray[x]);
                 }
             }
-
-            console.log(arr)
-
 
             /*
              *
