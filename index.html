@@ -15,36 +15,52 @@
 
 
     <style type="text/css">
+
         #holidayList { display: none; }
         #entire-sch { display: none; }
         /*body { background-color: #77171E}*/
         /*.container { }*/
-        /*.title {color: #DC9125 }*/
+        .title {padding-left: 3%; }
         /*.title {color: #ffffff; background-color: #8C8C8E; padding-left: 3%; padding-top: 2%; padding-bottom: 2%;*/
             /*text-shadow: 2px 4px 3px rgba(0,0,0,0.3);*/
             /*-webkit-box-shadow: 0 4px 4px -2px #000000;*/
             /*-moz-box-shadow: 0 4px 4px -2px #000000;*/
             /*box-shadow: 0 4px 4px -2px #000000;}*/
-        /*a{ color: #ffffff}*/
-    /**/
-        /*.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {*/
-            /*background-color: #DC9125;*/
-            /*border-color: #9F418F;*/
+        a{ color: #DC9125 }
+
+        /*h4{ color: #DC9125 }*/
+
+        .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+            background-color: #ffffff;
+            /*border-color: #DC9125;*/
+
+            border-radius: 6px;
+            border: solid 1px #DC9125;
 
             /*yello #DC9125*/
             /*gray #8C8C8E*/
-        /*}*/
-        /*.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {*/
-            /*background-color: #DC9125;*/
-            /*border-color: #31347B;*/
-        /*}*/
+        }
+        .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+            color: #77171E;
+            background-color: #ffffff;
+            border-color: #DC9125;
+        }
 
-        /*.btn*/
-        /*{*/
-            /*background-color: #DC9125;*/
-            /*border-color: #9F418F;*/
-        /*}*/
-        /*.submit-btn { margin-top: 4%}*/
+        .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+            color: #DC9125
+        }
+
+        .btn, .btn-primary
+        {
+            color: #77171E;
+            background-color: #ffffff;
+            border-color: #DC9125;
+        }
+        .submit-btn { margin-top: 4%}
+
+        li > a:hover {
+            color: black;
+        }
     </style>
 
 </head>
@@ -56,7 +72,7 @@
 
 
             <div class="row">
-                <h3 class="title">Choose Direction</h3>
+                <h4 class="title">Choose Direction</h4>
             </div>
             <div class="row">
                     <ul class="nav nav-pills nav-justified direction">
@@ -65,21 +81,22 @@
                     </ul>
             </div>
             <div class="row">
-                <h3 class="title">Choose Day</h3>
+                <h4 class="title">Choose Day</h4>
             </div>
             <div class="row">
                     <ul class="nav nav-pills nav-justified day">
                         <li ><a href="#">Weekday</a></li>
                         <li><a href="#">Saturday</a></li>
                         <li><a href="#">Sunday</a></li>
-                        <li><a href="#" >Holiday</a></li>
+                        <li><a href="#" >Check Holiday</a></li>
                     </ul>
             </div>
 
 
             <div class="row">
                 <select class="form-control" id="holidayList">
-                    <option>Martin Luther King Jr. Day</option>
+                    <option>Select</option>
+                    <option>Martin Luther King, Jr. Day</option>
                     <option>Presidents' Day</option>
                     <option>Memorial Day</option>
                     <option>Independence Day</option>
@@ -101,45 +118,38 @@
 
                 <!--User Location selection-->
                 <div class="row">
-                        <h4 class="title" >Your Location:</h4>
+                    <h4 class="title" >Your Location:</h4>
 
-
-                        <select class="form-control" id="from-stations">
-                            <option>Choose direction first</option>
-                        </select>
-
-                </div>
-                <!--Destination selection-->
-                <div class="row">
-
-                            <h4 class="title">Destination:</h4>
-
-
-
-                            <select class="form-control" id="to-stations">
-                                <option>Choose direction first</option>
-                            </select>
-
+                    <select class="form-control" id="from-stations">
+                        <option>Choose direction first</option>
+                    </select>
 
                 </div>
                 <!--Time selection-->
                 <div class="row">
 
-                            <h4 class="title">Time of Departure:</h4>
+                    <h4 class="title">Time of Departure:</h4>
 
+                    <select class="form-control" id="d-time">
+                        <option>Choose your location</option>
+                    </select>
 
-
-                            <select class="form-control" id="d-time">
-                                <option>Choose your location</option>
-                            </select>
-
-
+                </div>
+                <!--Destination selection-->
+                <div class="row">
+                    <h4 class="title">Destination:</h4>
+                    <select class="form-control" id="to-stations">
+                        <option>Choose direction first</option>
+                    </select>
                 </div>
             </div>
         </div>
-        <div class="table-responsive" id="entire-sch">
-            
-            <table class="table table-bordered ">
+        <div id="entire-sch">
+            <!--class="table-responsive"-->
+            <div class="row">
+                <h4 class="title">Your schedule</h4>
+            </div>
+            <table class="table table-striped">
 
                 <thead>
                 <tr>
@@ -176,24 +186,123 @@
         <div class="row submit-btn">
 
                 <button type="button"
-                        data-toggle="modal"
+
                         id="show-sch-btn"
-                        data-target="#myModal"
+
                         class="btn btn-primary btn-lg pull-right">Show Schedule</button>
 
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Holiday</h4>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
 
 
 
     <script type="text/javascript">
+
+
+        var holidays = [
+            {
+            "name":"New Year's Day",
+            "date":"Tuesday, January 1, 2013",
+            "description":"No Service"
+            },
+            {
+                "name":"Day After New Year's",
+                "date":"Wednesday, January 2, 2013",
+                "description":"Regular Weekday Schedule"
+            },
+            {
+                "name":"Martin Luther King, Jr. Day",
+                "date":"Monday, January 21, 2013",
+                "description":"Saturday Schedule"
+            },
+            {
+                "name":"Presidents' Day",
+                "date":"Monday, February 18, 2013",
+                "description":"Regular Weekday Schedule"
+            },
+            {
+                "name":"Memorial Day",
+                "date":"Monday May 27, 2013",
+                "description":"No Service"
+            },
+            {
+                "name":"Independence Day",
+                "date":"Thursday, July 4, 2013",
+                "description":"Saturday Schedule"
+            },
+            {
+                "name":"Labor Day Weekend",
+                "date":"Saturday, August 31, 2013 to Monday, September 2, 2013",
+                "description":"Expanded Saturday Schedule, All Weekend"
+            },
+            {
+                "name":"Columbus Day",
+                "date":"Monday, October 14, 2013",
+                "description":"Saturday Schedule"
+            },
+            {
+                "name":"Veterans Day",
+                "date":"Monday, November 11, 2013",
+                "description":"Saturday Schedule"
+            },
+            {
+                "name":"Thanksgiving Day",
+                "date":"Thursday, November 28, 2013",
+                "description":"No Service"
+            },
+            {
+                "name":"Day After Thanksgiving",
+                "date":"Friday, November 29, 2013",
+                "description":"Saturday Schedule"
+            },
+            {
+                "name":"Christmas Eve",
+                "date":"Tuesday, December 24, 2013",
+                "description":"Regular Weekday Schedule"
+            },
+            {
+                "name":"Christmas Day",
+                "date":"Wednesday, December 25, 2013",
+                "description":"No Service"
+            },
+            {
+                "name":"Day After Christmas",
+                "date":"Thursday, December 26, 2013",
+                "description":"Regular Weekday Schedule"
+            },
+            {
+                "name":"New Year's Day",
+                "date":"Wednesday, January 1, 2013",
+                "description":"No Service"
+            },
+            {
+                "name":"Day After New Year's",
+                "date":"Thursday, January 2, 2013",
+                "description":"Regular Weekday Schedule"
+            }]
         // Station data from server
         var sData;
-        var stationsArr = [];   // station's names (string)
-        var timesArr = [];      // train times (string)
-        var position = {};       // speed up proc for getting data from ds
-        var userLocation, userDestination;  // user set direction and day
+        var trainNum;
+        var directionArray = []
+
 
         // Helper to find unique stations
         var unique = function(origArr) {
@@ -214,6 +323,10 @@
             }
             return newArr;
         };
+
+        Array.prototype.removeByIndex = function(index) {
+            this.splice(index, 1);
+        }
 
 
         //call to get data from server with callback
@@ -250,16 +363,13 @@
                 $(this).parent().addClass('active');
 
                 // if the user clicked a Day option
-                if($(this).text() == "Weekday"
-                        || $(this).text() == "Saturday"
-                        || $(this).text() == "Sunday"
-                        || $(this).text() == "Holiday"){
+                if($(this).text() == "Weekday" || $(this).text() == "Saturday" || $(this).text() == "Sunday" || $(this).text() == "Check Holiday"){
 
                     //get the day that the user clicked
                     day = $(this).parent().text();
 
                     // if user clicked holiday then update DOM
-                    if($(this).text() == "Holiday"){
+                    if($(this).text() == "Check Holiday"){
                         $('#holidayList').css({"display":"inline"});
                     } else {
                         $('#holidayList').css({"display":"none"});
@@ -274,32 +384,43 @@
                 // console.log("The user choose: DAY: " + day +" DIRECTION: " + direction)
 
 
-                refresh(); //must be called first
-                updateFormLocationData();
+                setDirectionArray(direction, day);
+                updateUserLocSelector();
             });
         });
 
-        // get the user location and destination from drop downs
-        $('#to-stations').change(function () {
-            userDestination = $(this).val();
+        $('#holidayList').change(function (){
+            var selectValue = $(this).val();
 
-            if(userDestination != "Select" || userDestination != "Choose your location"){
-                position.endstation = $(this)[0].selectedIndex
+            var data;
+            for(var v =0; v < holidays.length; v++){
+                if (holidays[v]["name"] == selectValue){
+                    data = holidays[v];
+                    break;
+                }
             }
+            $(".modal-title").text(data["name"])
+            $(".modal-body").html(
+                    '<h3>Date: </h3>' + data["date"] + '\r\n\r\n' +
+                    '<h3>Service: </h3>' +data["description"] )
+
+            $('#myModal').modal('show');
+
+
 
         });
+
+
         $('#from-stations').change(function () {
             //get the location of the user
-            userLocation = $(this).val();
+            var userLocation = $(this).val();
             // check to make sure its valid
             if(userLocation != "Select" && userLocation != "Choose your location"){
                 // save the position of the option selected
                 var d = $(this)[0].selectedIndex;
 
-                // update the form
-                refresh();
-                updateFormTimeData();
-                updateFormDestinationData(d);
+
+                updateTimeSelector(userLocation);
 
             } else {
                 // if not valid notify the user
@@ -307,100 +428,118 @@
             }
         });
 
-        $('#d-time').change(function () {
-            // to accommodate for "Select" in options menu -1
-            position.time = $(this)[0].selectedIndex - 1;
-            position.trainName = sData[position.station]["data"][position.time]["train"];
-            console.log(position.trainName)
-            //console.log(position.time)
-
+        $('#d-time').change(function(){
+            var index = $('#from-stations')[0].selectedIndex;
+            var d = $('#from-stations').val();
+            var t = $(this).val();
+            updateUserDestSelector (d, t, index);
         });
 
 
         $('#show-sch-btn').click( function () {
             // if on schedule change to trip
             if ($(this).text() == "Show Schedule"){
-                var sch = []
-                // beginning
-                var b = sData[position.station]["data"];
+                var sch = [];
+                var userLoc = $('#from-stations').val();
+                var userDes = $('#to-stations').val();
+                var userTime = $('#d-time').val();
 
-                console.log(position.time)
 
-                for (var x = position.time; x < sData[position.station]["data"].length; x++) {
-                    if(b[x]["train"] == position.trainName){
-                        sch.push(sData[position.station]["data"][x])
-                        console.log("found train "+b[x]["train"])
-                        if(b[x]["station"] == userDestination){
+                //using the train numebr get the object
+                for(var x =0; x < directionArray.length; x++){
+                    if(directionArray[x]["train"] == trainNum){
+                        sch.push(directionArray[x])
+                    }
+                }
 
-                            break;
-                        }
+
+                for(var i = sch.length - 1; i >= 0; i--) {
+
+                    if(sch[i]["station"] != userDes) {
+                        sch.removeByIndex(i);
+                    } else if (sch[i]["station"] == userDes){
+                        break;
                     }
 
                 }
+
+                for(var x =0; x < sch.length; x++){
+                    if(sch[x]["station"] == userLoc){
+                      console.log("found at " + x)
+                    }
+                }
+
+                var c =0;
+                while(sch[c]["station"] != userLoc){
+                    sch.removeByIndex(c);
+                }
+
                 var schl = "";
                 for (var c =0; c < sch.length; c++){
+                    if(sch[c]["station"]){
+
+                    }
                     schl += '<tr>' +
-                            '<td>'+ sch[c]["time"] +'</td>' +
-                            '<td>'+ sch[c]["train"] +'</td>' +
-                            '<td>'+ sch[c]["station"] +'</td></tr>';
+                                '<td>'+ sch[c]["time"] +'</td>' +
+                                '<td>'+ sch[c]["train"] +'</td>' +
+                                '<td>'+ sch[c]["station"] +'</td>' +
+                            '</tr>';
                 }
 
 
-                document.getElementById("schedule-table").innerHTML = "";
                 document.getElementById("schedule-table").innerHTML = schl;
 
 
                 //change the text on the button
-                $(this).text("Change Trip");
 
                 // adjust views
+                $(this).fadeOut();
+                $(this).text("Change Trip");
                 $("#data-entry").fadeOut();
-                $("#entire-sch").fadeIn();
+                $("#entire-sch").delay(500).fadeIn();
+                $(this).delay(100).fadeIn();
 
             }
             // if on trip change to schedule
             else {
                 // set the text of the button
-                $(this).text("Show Schedule");
 
                 // adjust views
-                $("#data-entry").fadeIn();
                 $("#entire-sch").fadeOut();
+                $(this).fadeOut();
+                $("#data-entry").delay(500).fadeIn();
+                $(this).text("Show Schedule");
+                $(this).delay(100).fadeIn();
 
 
             }
         });
 
 
-        function refresh(){
-            if(sData != null){
-                // clear current array
-                stationsArr = [];
-                timesArr = [];
-                //sort through data
-                for (var i =0; i < sData.length;i++){
-                    //add check for holiday(holidays)
-                    // find what data to use from data set
-                    if((sData[i]["name"].indexOf(direction) != -1) && (sData[i]["name"].indexOf(day) != -1)){
-                        // console.log(sData[i]["name"])
-                        // get stations names
-                        position.station = i;
-                        for (var x = 0; x < sData[i]["data"].length; x++){
-                            stationsArr.push(sData[i]["data"][x]["station"]);
-                            if (userLocation == sData[i]["data"][x]["station"]){
-                                timesArr.push(sData[i]["data"][x]["time"]);
-                            }
-                        }
+        function setDirectionArray(dir, day){
+            var dirday = dir + " " + day;
+            if(dirday.indexOf("Holiday") != -1){
+
+            }
+            else {
+                for(var x =0; x < sData.length; x++){
+                    if (sData[x]["name"] == dirday){
+                        directionArray  = sData[x]["data"]
                     }
                 }
             }
         }
 
-        function updateFormLocationData(){
+        function updateUserLocSelector(){
 
-            // get unique stations
-            var uniqStationsArr = unique(stationsArr);
-            // console.log(uniqStationsArr.length)
+            var arr = []
+            //getting all the unique station names
+            for(var x =0; x < directionArray.length; x++){
+                if(arr.indexOf(directionArray[x]["station"]) == -1){
+                    arr.push(directionArray[x]["station"])
+                }
+            }
+
 
             /*
             *
@@ -408,17 +547,34 @@
             *
             * */
             var stringFrom = '<option>Select</option>';
-            for (var s = 0; s < uniqStationsArr.length; s++){
-                stringFrom += '<option>'+ uniqStationsArr[s] +'</option>';
+            for (var s = 0; s < arr.length; s++){
+                stringFrom += '<option>'+ arr[s] +'</option>';
             }
-            document.getElementById("from-stations").innerHTML = "";
             document.getElementById("from-stations").innerHTML = stringFrom;
         }
 
-        function updateFormDestinationData (from){
+        function updateUserDestSelector (from, time, index){
             // get unique stations
-            var uniqStationsArr = unique(stationsArr);
-            // console.log(uniqStationsArr.length)
+            var arr = [];
+
+            //getting all the unique station names
+
+            for(var x =0; x < directionArray.length; x++){
+                if(directionArray[x]["station"] == from && directionArray[x]["time"] == time){
+                    trainNum =  directionArray[x]["train"]
+                    break;
+                }
+            }
+
+            for(var x =0; x < directionArray.length; x++){
+                console.log(directionArray[x]["train"] )
+                if(directionArray[x]["train"].indexOf(trainNum) > -1){
+                    arr.push(directionArray[x])
+                }
+            }
+
+            console.log(arr)
+
 
             /*
              *
@@ -429,25 +585,33 @@
             var stringTo = '<option>Select</option>';
             // from is the option selected
             // since we dont want to include options prior we start from what the user selected
-            for (var s = from; s < uniqStationsArr.length; s++){
-                stringTo += '<option>'+ uniqStationsArr[s] +'</option>';
+            for (var s = 0; s < arr.length; s++){
+                stringTo += '<option>'+ arr[s]["station"] +'</option>';
             }
-            document.getElementById("to-stations").innerHTML = "";
             document.getElementById("to-stations").innerHTML = stringTo;
 
         }
 
-        function updateFormTimeData() {
+        function updateTimeSelector(userstation) {
+
+            // get times from given station
+            var arr = []
+            //getting all the unique station names
+            for(var x =0; x < directionArray.length; x++){
+                if(directionArray[x]["station"].indexOf(userstation) > -1){
+                    arr.push(directionArray[x]["time"])
+                }
+            }
+
             /*
              *
              * Set TIME options
              *
              * */
             var stringTimes = '<option>Select</option>';
-            for (var s = 0; s < timesArr.length; s++){
-                stringTimes += '<option>'+ timesArr[s] +'</option>';
+            for (var s = 0; s < arr.length; s++){
+                stringTimes += '<option>'+ arr[s] +'</option>';
             }
-            document.getElementById("d-time").innerHTML = "";
             document.getElementById("d-time").innerHTML = stringTimes;
         }
 
