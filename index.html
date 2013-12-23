@@ -16,16 +16,18 @@
 
     <style type="text/css">
 
-        #holidayList { display: none; }
+        /*#holidayList { display: none; }*/
         #entire-sch { display: none; }
         .title {padding-left: 3%; }
         @media (min-width: 320px){
             .submit-btn { padding-right: 3%; padding-bottom: 3%}
         }
 
-
-
         a{ color: #DC9125 }
+
+        .day, .direction {
+            padding-right: 3%;
+        }
 
         /*h4{ color: #DC9125 }*/
 
@@ -69,12 +71,49 @@
     <div class="container">
         <div id="data-entry">
 
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                Holiday Checker
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="row">
+                                <select class="form-control" id="holidayList">
+                                    <option>Select</option>
+                                    <option>Martin Luther King, Jr. Day</option>
+                                    <option>Presidents' Day</option>
+                                    <option>Memorial Day</option>
+                                    <option>Independence Day</option>
+                                    <option>Labor Day Weekend</option>
+                                    <option>Columbus Day</option>
+                                    <option>Veterans Day</option>
+                                    <option>Thanksgiving Day</option>
+                                    <option>Day After Thanksgiving</option>
+                                    <option>Christmas Eve</option>
+                                    <option>Christmas Day</option>
+                                    <option>Day After Christmas</option>
+                                    <option>New Year's Eve</option>
+                                    <option>New Year's Day</option>
+                                    <option>Day After New Year's</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
 
             <div class="row">
                 <h4 class="title">Choose Direction</h4>
             </div>
             <div class="row">
-                    <ul class="nav nav-pills direction">
+                    <ul class="nav nav-pills direction pull-right">
                         <li ><a href="#">Northbound</a></li>
                         <li><a href="#">Southbound</a></li>
                     </ul>
@@ -83,35 +122,15 @@
                 <h4 class="title">Choose Day</h4>
             </div>
             <div class="row">
-                    <ul class="nav nav-pills  day">
+                    <ul class="nav nav-pills day pull-right">
                         <li ><a href="#">Weekday</a></li>
                         <li><a href="#">Saturday</a></li>
                         <li><a href="#">Sunday</a></li>
-                        <li><a href="#" >Check Holiday</a></li>
                     </ul>
             </div>
 
 
-            <div class="row">
-                <select class="form-control" id="holidayList">
-                    <option>Select</option>
-                    <option>Martin Luther King, Jr. Day</option>
-                    <option>Presidents' Day</option>
-                    <option>Memorial Day</option>
-                    <option>Independence Day</option>
-                    <option>Labor Day Weekend</option>
-                    <option>Columbus Day</option>
-                    <option>Veterans Day</option>
-                    <option>Thanksgiving Day</option>
-                    <option>Day After Thanksgiving</option>
-                    <option>Christmas Eve</option>
-                    <option>Christmas Day</option>
-                    <option>Day After Christmas</option>
-                    <option>New Year's Eve</option>
-                    <option>New Year's Day</option>
-                    <option>Day After New Year's</option>
-                </select>
-            </div>
+
 
             <div id="user-data">
 
@@ -363,17 +382,21 @@
                     //get the day that the user clicked
                     day = $(this).parent().text();
 
-                    // if user clicked holiday then update DOM
-                    if($(this).text() == "Check Holiday"){
-                        $('#holidayList').css({"display":"inline"});
-                    } else {
-                        $('#holidayList').css({"display":"none"});
-                    }
+//                    // if user clicked holiday then update DOM
+//                    if($(this).text() == "Check Holiday"){
+//                        $('#holidayList').css({"display":"inline"});
+//                    } else {
+//                        $('#holidayList').css({"display":"none"});
+//                    }
                 }
                 // the user clicked the direction
                 else {
                     $('ul.day').find('.active').removeClass('active');
                     direction = $(this).parent().text();
+                    $("#d-time").html("<select>Choose Day</select>")
+                    $("#to-stations").html("<select>Choose Day</select>")
+                    $("#from-stations").text('<select>Choose Day</select>')
+                    day = ''
                 }
 
                 // console.log("The user choose: DAY: " + day +" DIRECTION: " + direction)
@@ -503,16 +526,13 @@
 
         function setDirectionArray(dir, day){
             var dirday = dir + " " + day;
-            if(dirday.indexOf("Holiday") != -1){
 
-            }
-            else {
-                for(var x =0; x < sData.length; x++){
-                    if (sData[x]["name"] == dirday){
-                        directionArray  = sData[x]["data"]
-                    }
+            for(var x =0; x < sData.length; x++){
+                if (sData[x]["name"] == dirday){
+                    directionArray  = sData[x]["data"]
                 }
             }
+
         }
 
         function updateUserLocSelector(){
@@ -558,6 +578,12 @@
                     arr.push(directionArray[x]);
                 }
             }
+
+            // removing zero element while not the user's location
+            while(arr[0]["station"] != from){
+                arr.removeByIndex(0);
+            }
+            arr.removeByIndex(0);
 
             /*
              *
