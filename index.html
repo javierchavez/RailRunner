@@ -363,7 +363,7 @@
             }
             return newArr;
         };
-
+        // Helper to remove a given elem from array
         Array.prototype.removeByIndex = function(index) {
             this.splice(index, 1);
         };
@@ -468,7 +468,7 @@
             var index = $('#from-stations')[0].selectedIndex;
             var d = $('#from-stations').val();
             var t = $(this).val();
-            updateUserDestSelector (d, t, index);
+            updateUserDestSelector (d, t);
         });
 
 
@@ -506,18 +506,18 @@
                 var t1 = new Date();
                 var t2 = new Date();
 
-
+                // setting time
                 var pt = sch[sch.length-1]["time"].match(/(\d+)(?::(\d\d))?\s*(p?)/);
                 t1.setHours( parseInt(pt[1]) + (pt[3] ? 12 : 0) );
                 t1.setMinutes( parseInt(pt[2]) || 0 );
 
-
+                // setting time time 2
                 var pt2 = sch[0]["time"].match(/(\d+)(?::(\d\d))?\s*(p?)/);
                 t2.setHours( parseInt(pt2[1]) + (pt2[3] ? 12 : 0) );
                 t2.setMinutes( parseInt(pt2[2]) || 0 );
 
+                // estimate time
                 var ms = t1 - t2;
-
                 x = ms / 1000;
                 var seconds = x % 60;
                 x /= 60;
@@ -525,8 +525,10 @@
                 x /= 60;
                 var hours = x % 24;
 
+                // truncate decimal
                 var trunHours = Math.floor(hours * 10) / 10;
-                console.log( hours );
+                // DEBUG
+                // console.log( hours );
 
                 var schl = "";
                 for (var c =0; c < sch.length; c++){
@@ -538,7 +540,7 @@
                                 '<td>'+ sch[c]["station"] + " " + busAvil + " " + lastTrain +'</td>'+
                             '</tr>';
                 }
-
+                // these are the trains that have quiet cars
                 if(sch[0]["train"] == "502" || sch[0]["train"] == "504"
                         || sch[0]["train"] == "102_exp" || sch[0]["train"] == "506"
                         || sch[0]["train"] == "512" || sch[0]["train"] == "514"
@@ -546,16 +548,16 @@
                         || sch[0]["train"] == "509" || sch[0]["train"] == "515"
                         || sch[0]["train"] == "101_exp"
                         || sch[0]["train"] == "517" || sch[0]["train"] == "519"){
-                    $("#quite-c").text("Designated QUIET CAR available")
+                    // show user
+                    $("#quite-c").text("Designated QUIET CAR available");
                 }
 
-
+                // display schedule to user
                 document.getElementById("schedule-table").innerHTML = schl;
-
+                // total time
                 $("#sch-info").text("Total Time (est.): " + trunHours + "hours");
 
 
-                //change the text on the button
 
                 // adjust views
                 $(this).fadeOut();
@@ -580,7 +582,7 @@
             }
         });
 
-
+        // this sets an array that holds all the object assiociated with direction "Northbound Weekday"
         function setDirectionArray(dir, day){
             var dirday = dir + " " + day;
 
@@ -601,7 +603,6 @@
                     arr.push(directionArray[x]["station"])
                 }
             }
-
 
             /*
             *
