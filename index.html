@@ -20,7 +20,8 @@
         #entire-sch { display: none; }
         @media(max-width:767px){
 
-            .title {padding-left: 3%; }
+            .title, .info-all {padding-left: 3%; }
+            #quite-c {padding-right: 3%; color: #DC9125; }
             .submit-btn { padding-right: 3%; padding-bottom: 3%}
             .day, .direction {
                 padding-right: 3%;
@@ -32,10 +33,12 @@
         @media(min-width:768px){
             .pull-right {
                 float: left!important;
-
             }
+
         }
 
+        .info-all { float: right!important;}
+        #quite-c {color: #DC9125; float: right!important;}
 
 
         a{ color: #DC9125 }
@@ -178,6 +181,7 @@
             <!--class="table-responsive"-->
             <div class="row">
                 <h4 class="title">Your schedule</h4>
+                <p id="quite-c"></p>
             </div>
             <table class="table table-striped">
 
@@ -212,13 +216,13 @@
                 </tr>
                 </tbody>
             </table>
-            <div class="row">
+            <div class="row info-all">
                 <h4 class="title" id="sch-info">Time</h4>
                 <p>
                     <span class="glyphicon glyphicon-remove-circle"></span> Train arrives but does not continue
-                </p>
-                <p>
+                    <br>
                     <span class="glyphicon glyphicon-ok-sign"></span> Service provided by RTD Bus
+
                 </p>
             </div>
         </div>
@@ -533,6 +537,16 @@
                                 '<td>'+ sch[c]["train"] +'</td>' +
                                 '<td>'+ sch[c]["station"] + " " + busAvil + " " + lastTrain +'</td>'+
                             '</tr>';
+                }
+
+                if(sch[0]["train"] == "502" || sch[0]["train"] == "504"
+                        || sch[0]["train"] == "102_exp" || sch[0]["train"] == "506"
+                        || sch[0]["train"] == "512" || sch[0]["train"] == "514"
+                        || sch[0]["train"] == "503" || sch[0]["train"] == "507"
+                        || sch[0]["train"] == "509" || sch[0]["train"] == "515"
+                        || sch[0]["train"] == "101_exp"
+                        || sch[0]["train"] == "517" || sch[0]["train"] == "519"){
+                    $("#quite-c").text("Designated QUIET CAR available")
                 }
 
 
