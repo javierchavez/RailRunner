@@ -18,16 +18,28 @@
 
         /*#holidayList { display: none; }*/
         #entire-sch { display: none; }
-        .title {padding-left: 3%; }
-        @media (min-width: 320px){
+        @media(max-width:767px){
+
+            .title {padding-left: 3%; }
             .submit-btn { padding-right: 3%; padding-bottom: 3%}
+            .day, .direction {
+                padding-right: 3%;
+            }
+            .pull-right {
+                float: right!important;
+            }
         }
+        @media(min-width:768px){
+            .pull-right {
+                float: left!important;
+
+            }
+        }
+
+
 
         a{ color: #DC9125 }
 
-        .day, .direction {
-            padding-right: 3%;
-        }
 
         /*h4{ color: #DC9125 }*/
 
@@ -80,8 +92,9 @@
                             </a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne" class="panel-collapse collapse out">
                         <div class="panel-body">
+                            <p>Check what to see if the train is running.</p>
                             <div class="row">
                                 <select class="form-control" id="holidayList">
                                     <option>Select</option>
@@ -97,7 +110,6 @@
                                     <option>Christmas Eve</option>
                                     <option>Christmas Day</option>
                                     <option>Day After Christmas</option>
-                                    <option>New Year's Eve</option>
                                     <option>New Year's Day</option>
                                     <option>Day After New Year's</option>
                                 </select>
@@ -200,6 +212,15 @@
                 </tr>
                 </tbody>
             </table>
+            <div class="row">
+                <h4 class="title" id="sch-info">Time</h4>
+                <p>
+                    <span class="glyphicon glyphicon-remove-circle"></span> Train arrives but does not continue
+                </p>
+                <p>
+                    <span class="glyphicon glyphicon-ok-sign"></span> Service provided by RTD Bus
+                </p>
+            </div>
         </div>
         <div class="row submit-btn">
                 <button type="button"
@@ -220,6 +241,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -311,11 +333,11 @@
                 "name":"Day After New Year's",
                 "date":"Thursday, January 2, 2013",
                 "description":"Regular Weekday Schedule"
-            }]
+            }];
         // Station data from server
         var sData;
         var trainNum;
-        var directionArray = []
+        var directionArray = [];
 
 
         // Helper to find unique stations
@@ -340,7 +362,7 @@
 
         Array.prototype.removeByIndex = function(index) {
             this.splice(index, 1);
-        }
+        };
 
 
         //call to get data from server with callback
@@ -377,25 +399,20 @@
                 $(this).parent().addClass('active');
 
                 // if the user clicked a Day option
-                if($(this).text() == "Weekday" || $(this).text() == "Saturday" || $(this).text() == "Sunday" || $(this).text() == "Check Holiday"){
+                if($(this).text() == "Weekday" || $(this).text() == "Saturday" || $(this).text() == "Sunday" ){
 
                     //get the day that the user clicked
                     day = $(this).parent().text();
 
-//                    // if user clicked holiday then update DOM
-//                    if($(this).text() == "Check Holiday"){
-//                        $('#holidayList').css({"display":"inline"});
-//                    } else {
-//                        $('#holidayList').css({"display":"none"});
-//                    }
+
                 }
                 // the user clicked the direction
                 else {
                     $('ul.day').find('.active').removeClass('active');
                     direction = $(this).parent().text();
-                    $("#d-time").html("<select>Choose Day</select>")
-                    $("#to-stations").html("<select>Choose Day</select>")
-                    $("#from-stations").text('<select>Choose Day</select>')
+                    $("#d-time").html("<select>Choose Day</select>");
+                    $("#to-stations").html("<select>Choose Day</select>");
+                    $("#from-stations").text('<select>Choose Day</select>');
                     day = ''
                 }
 
@@ -417,10 +434,10 @@
                     break;
                 }
             }
-            $(".modal-title").text(data["name"])
+            $(".modal-title").text(data["name"]);
             $(".modal-body").html(
                     '<h3>Date: </h3>' + data["date"] + '\r\n\r\n' +
-                    '<h3>Service: </h3>' +data["description"] )
+                    '<h3>Service: </h3>' +data["description"] );
 
             $('#myModal').modal('show');
         });
@@ -482,20 +499,46 @@
                     sch.removeByIndex(0);
                 }
 
+                var t1 = new Date();
+                var t2 = new Date();
+
+
+                var pt = sch[sch.length-1]["time"].match(/(\d+)(?::(\d\d))?\s*(p?)/);
+                t1.setHours( parseInt(pt[1]) + (pt[3] ? 12 : 0) );
+                t1.setMinutes( parseInt(pt[2]) || 0 );
+
+
+                var pt2 = sch[0]["time"].match(/(\d+)(?::(\d\d))?\s*(p?)/);
+                t2.setHours( parseInt(pt2[1]) + (pt2[3] ? 12 : 0) );
+                t2.setMinutes( parseInt(pt2[2]) || 0 );
+
+                var ms = t1 - t2;
+
+                x = ms / 1000;
+                var seconds = x % 60;
+                x /= 60;
+                var minutes = x % 60;
+                x /= 60;
+                var hours = x % 24;
+
+                var trunHours = Math.floor(hours * 10) / 10;
+                console.log( hours );
+
                 var schl = "";
                 for (var c =0; c < sch.length; c++){
-                    if(sch[c]["station"]){
-
-                    }
+                    var busAvil = (sch[c]["rtd"]=="1")?'<span class="glyphicon glyphicon-ok-sign"></span>':'';
+                    var lastTrain = (sch[c]["final"]=="1")?'<span class="glyphicon glyphicon-remove-circle"></span>':'';
                     schl += '<tr>' +
                                 '<td>'+ sch[c]["time"] +'</td>' +
                                 '<td>'+ sch[c]["train"] +'</td>' +
-                                '<td>'+ sch[c]["station"] +'</td>' +
+                                '<td>'+ sch[c]["station"] + " " + busAvil + " " + lastTrain +'</td>'+
                             '</tr>';
                 }
 
 
                 document.getElementById("schedule-table").innerHTML = schl;
+
+                $("#sch-info").text("Total Time (est.): " + trunHours + "hours");
 
 
                 //change the text on the button
@@ -562,9 +605,7 @@
             // get unique stations
             var arr = [];
 
-
             //getting all the unique station names
-
             for(var x =0; x < directionArray.length; x++){
                 if(directionArray[x]["station"] == from && directionArray[x]["time"] == time){
                     trainNum =  directionArray[x]["train"];
@@ -583,6 +624,7 @@
             while(arr[0]["station"] != from){
                 arr.removeByIndex(0);
             }
+            // also remove the object that is the same as the user location
             arr.removeByIndex(0);
 
             /*
@@ -591,23 +633,28 @@
              *
              *
              * */
-            var stringTo = '<option>Select</option>';
-            // from is the option selected
-            // since we dont want to include options prior we start from what the user selected
-            for (var s = 0; s < arr.length; s++){
-                stringTo += '<option>'+ arr[s]["station"] +'</option>';
+            var stringTo = '';
+             if(arr.length > 0){
+                stringTo = '<option>Select</option>';
+                // from is the option selected
+                // since we dont want to include options prior we start from what the user selected
+                for (var s = 0; s < arr.length; s++){
+                    stringTo += '<option>'+ arr[s]["station"] +'</option>';
+                }
+            } else{
+                stringTo = '<option>Train arrives but does not continue</option>'
             }
-            document.getElementById("to-stations").innerHTML = stringTo;
 
+            document.getElementById("to-stations").innerHTML = stringTo;
         }
 
-        function updateTimeSelector(userstation) {
+        function updateTimeSelector(userStation) {
 
             // get times from given station
-            var arr = []
+            var arr = [];
             //getting all the unique station names
             for(var x =0; x < directionArray.length; x++){
-                if(directionArray[x]["station"].indexOf(userstation) > -1){
+                if(directionArray[x]["station"].indexOf(userStation) > -1){
                     arr.push(directionArray[x]["time"])
                 }
             }
