@@ -91,42 +91,7 @@
     <div class="container">
         <div id="data-entry">
 
-            <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                Holiday Checker
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse out">
-                        <div class="panel-body">
-                            <p>Check what to see if the train is running.</p>
-                            <div class="row">
-                                <select class="form-control" id="holidayList">
-                                    <option>Select</option>
-                                    <option>Martin Luther King, Jr. Day</option>
-                                    <option>Presidents' Day</option>
-                                    <option>Memorial Day</option>
-                                    <option>Independence Day</option>
-                                    <option>Labor Day Weekend</option>
-                                    <option>Columbus Day</option>
-                                    <option>Veterans Day</option>
-                                    <option>Thanksgiving Day</option>
-                                    <option>Day After Thanksgiving</option>
-                                    <option>Christmas Eve</option>
-                                    <option>Christmas Day</option>
-                                    <option>Day After Christmas</option>
-                                    <option>New Year's Day</option>
-                                    <option>Day After New Year's</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-            </div>
 
 
             <div class="row">
@@ -237,112 +202,12 @@
                         class="btn btn-primary btn-lg pull-right">Show Schedule</button>
         </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Holiday</h4>
-                </div>
-                <div class="modal-body">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
-
 
 
     <script type="text/javascript">
 
 
-        var holidays = [
-            {
-            "name":"New Year's Day",
-            "date":"Tuesday, January 1, 2013",
-            "description":"No Service"
-            },
-            {
-                "name":"Day After New Year's",
-                "date":"Wednesday, January 2, 2013",
-                "description":"Regular Weekday Schedule"
-            },
-            {
-                "name":"Martin Luther King, Jr. Day",
-                "date":"Monday, January 21, 2013",
-                "description":"Saturday Schedule"
-            },
-            {
-                "name":"Presidents' Day",
-                "date":"Monday, February 18, 2013",
-                "description":"Regular Weekday Schedule"
-            },
-            {
-                "name":"Memorial Day",
-                "date":"Monday May 27, 2013",
-                "description":"No Service"
-            },
-            {
-                "name":"Independence Day",
-                "date":"Thursday, July 4, 2013",
-                "description":"Saturday Schedule"
-            },
-            {
-                "name":"Labor Day Weekend",
-                "date":"Saturday, August 31, 2013 to Monday, September 2, 2013",
-                "description":"Expanded Saturday Schedule, All Weekend"
-            },
-            {
-                "name":"Columbus Day",
-                "date":"Monday, October 14, 2013",
-                "description":"Saturday Schedule"
-            },
-            {
-                "name":"Veterans Day",
-                "date":"Monday, November 11, 2013",
-                "description":"Saturday Schedule"
-            },
-            {
-                "name":"Thanksgiving Day",
-                "date":"Thursday, November 28, 2013",
-                "description":"No Service"
-            },
-            {
-                "name":"Day After Thanksgiving",
-                "date":"Friday, November 29, 2013",
-                "description":"Saturday Schedule"
-            },
-            {
-                "name":"Christmas Eve",
-                "date":"Tuesday, December 24, 2013",
-                "description":"Regular Weekday Schedule"
-            },
-            {
-                "name":"Christmas Day",
-                "date":"Wednesday, December 25, 2013",
-                "description":"No Service"
-            },
-            {
-                "name":"Day After Christmas",
-                "date":"Thursday, December 26, 2013",
-                "description":"Regular Weekday Schedule"
-            },
-            {
-                "name":"New Year's Day",
-                "date":"Wednesday, January 1, 2013",
-                "description":"No Service"
-            },
-            {
-                "name":"Day After New Year's",
-                "date":"Thursday, January 2, 2013",
-                "description":"Regular Weekday Schedule"
-            }];
+
         // Station data from server
         var sData;
         var trainNum;
@@ -433,23 +298,7 @@
             });
         });
 
-        $('#holidayList').change(function (){
-            var selectValue = $(this).val();
 
-            var data;
-            for(var v =0; v < holidays.length; v++){
-                if (holidays[v]["name"] == selectValue){
-                    data = holidays[v];
-                    break;
-                }
-            }
-            $(".modal-title").text(data["name"]);
-            $(".modal-body").html(
-                    '<h3>Date: </h3>' + data["date"] + '\r\n\r\n' +
-                    '<h3>Service: </h3>' +data["description"] );
-
-            $('#myModal').modal('show');
-        });
 
 
         $('#from-stations').change(function () {
