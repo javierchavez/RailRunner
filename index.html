@@ -13,6 +13,10 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 
+    <script src="js/spinningwheel-min.js"></script>
+
+    <link rel="stylesheet" href="js/spinningwheel.css">
+
 
     <style type="text/css">
 
@@ -81,6 +85,7 @@
 
 </head>
 <body>
+
 
 
     <div class="container">
@@ -473,6 +478,7 @@
 
 
         $('#show-sch-btn').click( function () {
+            swExample();
             // if on schedule change to trip
             if ($(this).text() == "Show Schedule"){
                 var sch = [];
@@ -686,6 +692,30 @@
                 stringTimes += '<option>'+ times[s] +'</option>';
             }
             document.getElementById("d-time").innerHTML = stringTimes;
+        }
+
+
+        function swExample() {
+            var numbers = { 0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9 };
+            SpinningWheel.addSlot(numbers, 'right');
+            SpinningWheel.addSlot(numbers, 'right');
+            SpinningWheel.addSlot({ separator: '.' }, 'readonly shrink');
+            SpinningWheel.addSlot(numbers, 'right');
+            SpinningWheel.addSlot({ Kg: 'Kg', Lb: 'Lb', St: 'St' }, 'shrink');
+
+            SpinningWheel.setCancelAction(cancel);
+            SpinningWheel.setDoneAction(done);
+
+            SpinningWheel.open();
+        }
+
+        function done() {
+            var results = SpinningWheel.getSelectedValues();
+            alert('values:' + results.values.join(', ') + ' - keys: ' + results.keys.join(', '));
+        }
+
+        function cancel() {
+            alert('cancelled!');
         }
 
     </script>
