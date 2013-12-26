@@ -395,8 +395,8 @@
         *
         * Highlight button based on user click
         * */
-        var direction, day;
         $(document).ready(function () {
+        var direction, day;
             $('ul.nav > li a').click(function (e) {
                 // highlight option the user clicked
                 $(this).closest('ul.nav').find('.active').removeClass('active');
@@ -465,7 +465,7 @@
         });
 
         $('#d-time').change(function(){
-            var index = $('#from-stations')[0].selectedIndex;
+            // var index = $('#from-stations')[0].selectedIndex;
             var d = $('#from-stations').val();
             var t = $(this).val();
             updateUserDestSelector (d, t);
@@ -519,9 +519,9 @@
                 // estimate time
                 var ms = t1 - t2;
                 x = ms / 1000;
-                var seconds = x % 60;
+                // var seconds = x % 60;
                 x /= 60;
-                var minutes = x % 60;
+                // var minutes = x % 60;
                 x /= 60;
                 var hours = x % 24;
 
@@ -541,13 +541,13 @@
                             '</tr>';
                 }
                 // these are the trains that have quiet cars
-                if(sch[0]["train"] == "502" || sch[0]["train"] == "504"
-                        || sch[0]["train"] == "102_exp" || sch[0]["train"] == "506"
-                        || sch[0]["train"] == "512" || sch[0]["train"] == "514"
-                        || sch[0]["train"] == "503" || sch[0]["train"] == "507"
-                        || sch[0]["train"] == "509" || sch[0]["train"] == "515"
-                        || sch[0]["train"] == "101_exp"
-                        || sch[0]["train"] == "517" || sch[0]["train"] == "519"){
+                if(sch[0]["train"] == "502" || sch[0]["train"] == "504" ||
+                        sch[0]["train"] == "102_exp" || sch[0]["train"] == "506" ||
+                        sch[0]["train"] == "512" || sch[0]["train"] == "514" ||
+                        sch[0]["train"] == "503" || sch[0]["train"] == "507" ||
+                        sch[0]["train"] == "509" || sch[0]["train"] == "515" ||
+                        sch[0]["train"] == "101_exp" || sch[0]["train"] == "517" ||
+                        sch[0]["train"] == "519"){
                     // show user
                     $("#quite-c").text("Designated QUIET CAR available");
                 }
@@ -582,7 +582,7 @@
             }
         });
 
-        // this sets an array that holds all the object assiociated with direction "Northbound Weekday"
+        // this sets an array that holds all the object associated with direction "Northbound Weekday"
         function setDirectionArray(dir, day){
             var dirday = dir + " " + day;
 
@@ -596,11 +596,11 @@
 
         function updateUserLocSelector(){
 
-            var arr = []
+            var stations = []
             //getting all the unique station names
             for(var x =0; x < directionArray.length; x++){
-                if(arr.indexOf(directionArray[x]["station"]) == -1){
-                    arr.push(directionArray[x]["station"])
+                if(stations.indexOf(directionArray[x]["station"]) == -1){
+                    stations.push(directionArray[x]["station"])
                 }
             }
 
@@ -610,17 +610,17 @@
             *
             * */
             var stringFrom = '<option>Select</option>';
-            for (var s = 0; s < arr.length; s++){
-                stringFrom += '<option>'+ arr[s] +'</option>';
+            for (var s = 0; s < stations.length; s++){
+                stringFrom += '<option>'+ stations[s] +'</option>';
             }
             document.getElementById("from-stations").innerHTML = stringFrom;
         }
 
         function updateUserDestSelector (from, time){
             // get unique stations
-            var arr = [];
+            var stops = [];
 
-            //getting all the unique station names
+            // find the train number associated with time and location
             for(var x =0; x < directionArray.length; x++){
                 if(directionArray[x]["station"] == from && directionArray[x]["time"] == time){
                     trainNum =  directionArray[x]["train"];
@@ -628,19 +628,20 @@
                 }
             }
 
+            // get all the stops of that train
             for(var x =0; x < directionArray.length; x++){
-                console.log(directionArray[x]["train"] );
+                //console.log(directionArray[x]["train"] );
                 if(directionArray[x]["train"].indexOf(trainNum) > -1){
-                    arr.push(directionArray[x]);
+                    stops.push(directionArray[x]);
                 }
             }
 
             // removing zero element while not the user's location
-            while(arr[0]["station"] != from){
-                arr.removeByIndex(0);
+            while(stops[0]["station"] != from){
+                stops.removeByIndex(0);
             }
             // also remove the object that is the same as the user location
-            arr.removeByIndex(0);
+            stops.removeByIndex(0);
 
             /*
              *
@@ -649,12 +650,13 @@
              *
              * */
             var stringTo = '';
-             if(arr.length > 0){
+
+             if(stops.length > 0){
                 stringTo = '<option>Select</option>';
                 // from is the option selected
                 // since we dont want to include options prior we start from what the user selected
-                for (var s = 0; s < arr.length; s++){
-                    stringTo += '<option>'+ arr[s]["station"] +'</option>';
+                for (var s = 0; s < stops.length; s++){
+                    stringTo += '<option>'+ stops[s]["station"] +'</option>';
                 }
             } else{
                 stringTo = '<option>Train arrives but does not continue</option>'
@@ -666,11 +668,11 @@
         function updateTimeSelector(userStation) {
 
             // get times from given station
-            var arr = [];
+            var times = [];
             //getting all the unique station names
             for(var x =0; x < directionArray.length; x++){
                 if(directionArray[x]["station"].indexOf(userStation) > -1){
-                    arr.push(directionArray[x]["time"])
+                    times.push(directionArray[x]["time"])
                 }
             }
 
@@ -680,8 +682,8 @@
              *
              * */
             var stringTimes = '<option>Select</option>';
-            for (var s = 0; s < arr.length; s++){
-                stringTimes += '<option>'+ arr[s] +'</option>';
+            for (var s = 0; s < times.length; s++){
+                stringTimes += '<option>'+ times[s] +'</option>';
             }
             document.getElementById("d-time").innerHTML = stringTimes;
         }
