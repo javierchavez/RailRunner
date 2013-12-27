@@ -1,87 +1,94 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <title>Rail Runner</title>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery.js"></script>
+    <!--<script src="https://code.jquery.com/jquery.js"></script>-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
     <!-- Latest compiled and minified JavaScript -->
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <!--<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
 
-    <script src="js/spinningwheel-min.js"></script>
+    <script src="js/spinningwheel.js"></script>
+    <link rel="stylesheet" href="css/spinningwheel.css">
 
-    <link rel="stylesheet" href="js/spinningwheel.css">
 
 
     <style type="text/css">
 
+
+
+
         /*#holidayList { display: none; }*/
-        #entire-sch { display: none; }
-        @media(max-width:767px){
+        /*#entire-sch { display: none; }*/
+        /*@media(max-width:767px){*/
 
-            .title, .info-all {padding-left: 3%; }
-            #quite-c {padding-right: 3%; color: #DC9125; }
-            .submit-btn { padding-right: 3%; padding-bottom: 3%}
-            .day, .direction {
-                padding-right: 3%;
-            }
-            .pull-right {
-                float: right!important;
-            }
-        }
-        @media(min-width:768px){
-            .pull-right {
-                float: left!important;
-            }
+            /*.title, .info-all {padding-left: 3%; }*/
+            /*#quite-c {padding-right: 3%; color: #DC9125; }*/
+            /*.submit-btn { padding-right: 3%; padding-bottom: 3%}*/
+            /*.day, .direction {*/
+                /*padding-right: 3%;*/
+            /*}*/
+            /*.pull-right {*/
+                /*float: right!important;*/
+            /*}*/
+        /*}*/
+        /*@media(min-width:768px){*/
+            /*.pull-right {*/
+                /*float: left!important;*/
+            /*}*/
 
-        }
+        /*}*/
 
-        .info-all { float: right!important;}
-        #quite-c {color: #DC9125; float: right!important;}
+        /*.info-all { float: right!important;}*/
+        /*#quite-c {color: #DC9125; float: right!important;}*/
 
 
-        a{ color: #DC9125 }
+        /*a{ color: #DC9125 }*/
 
 
         /*h4{ color: #DC9125 }*/
 
-        .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
-            background-color: #ffffff;
+        /*.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {*/
+            /*background-color: #ffffff;*/
             /*border-color: #DC9125;*/
 
-            border-radius: 6px;
-            border: solid 1px #DC9125;
+            /*border-radius: 6px;*/
+            /*border: solid 1px #DC9125;*/
 
             /*yello #DC9125*/
             /*gray #8C8C8E*/
-        }
-        .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
-            color: #77171E;
-            background-color: #ffffff;
-            border-color: #DC9125;
-        }
+        /*}*/
+        /*.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {*/
+            /*color: #77171E;*/
+            /*background-color: #ffffff;*/
+            /*border-color: #DC9125;*/
+        /*}*/
 
-        .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
-            color: #DC9125
-        }
+        /*.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {*/
+            /*color: #DC9125*/
+        /*}*/
 
-        .btn, .btn-primary
-        {
-            color: #77171E;
-            background-color: #ffffff;
-            border-color: #DC9125;
-        }
-        .submit-btn { margin-top: 4%}
+        /*.btn, .btn-primary*/
+        /*{*/
+            /*color: #77171E;*/
+            /*background-color: #ffffff;*/
+            /*border-color: #DC9125;*/
+        /*}*/
+        /*.submit-btn { margin-top: 4%}*/
 
-        li > a:hover {
-            color: black;
-        }
+        /*li > a:hover {*/
+            /*color: black;*/
+        /*}*/
     </style>
+
+
 
 </head>
 <body>
@@ -89,64 +96,43 @@
 
 
     <div class="container">
-        <div id="data-entry">
+        <!--<div id="data-entry">-->
 
 
 
 
-            <div class="row">
-                <h4 class="title">Choose Direction</h4>
-            </div>
-            <div class="row">
-                    <ul class="nav nav-pills direction pull-right">
-                        <li ><a href="#">Northbound</a></li>
-                        <li><a href="#">Southbound</a></li>
-                    </ul>
-            </div>
-            <div class="row">
-                <h4 class="title">Choose Day</h4>
-            </div>
-            <div class="row">
-                    <ul class="nav nav-pills day pull-right">
-                        <li ><a href="#">Weekday</a></li>
-                        <li><a href="#">Saturday</a></li>
-                        <li><a href="#">Sunday</a></li>
-                    </ul>
-            </div>
 
+            <!--<div id="user-data">-->
 
+                <!--&lt;!&ndash;User Location selection&ndash;&gt;-->
+                <!--<div class="row">-->
+                    <!--<h4 class="title" >Your Location:</h4>-->
 
+                    <!--<select class="form-control" id="from-stations">-->
+                        <!--<option>Choose direction first</option>-->
+                    <!--</select>-->
 
-            <div id="user-data">
+                <!--</div>-->
+                <!--&lt;!&ndash;Time selection&ndash;&gt;-->
+                <!--<div class="row">-->
 
-                <!--User Location selection-->
-                <div class="row">
-                    <h4 class="title" >Your Location:</h4>
+                    <!--<h4 class="title">Time of Departure:</h4>-->
 
-                    <select class="form-control" id="from-stations">
-                        <option>Choose direction first</option>
-                    </select>
+                    <!--<select class="form-control" id="d-time">-->
+                        <!--<option>Choose your location</option>-->
+                    <!--</select>-->
 
-                </div>
-                <!--Time selection-->
-                <div class="row">
-
-                    <h4 class="title">Time of Departure:</h4>
-
-                    <select class="form-control" id="d-time">
-                        <option>Choose your location</option>
-                    </select>
-
-                </div>
-                <!--Destination selection-->
-                <div class="row">
-                    <h4 class="title">Destination:</h4>
-                    <select class="form-control" id="to-stations">
-                        <option>Choose direction first</option>
-                    </select>
-                </div>
-            </div>
-        </div>
+                <!--</div>-->
+                <!--&lt;!&ndash;Destination selection&ndash;&gt;-->
+                <!--<div class="row">-->
+                    <!--<h4 class="title">Destination:</h4>-->
+                    <!--<select class="form-control" id="to-stations">-->
+                        <!--<option>Choose direction first</option>-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <button onclick="swExample()">Change Trip</button>
         <div id="entire-sch">
             <!--class="table-responsive"-->
             <div class="row">
@@ -155,13 +141,6 @@
             </div>
             <table class="table table-striped">
 
-                <thead>
-                <tr>
-                    <th>Time</th>
-                    <th>Train</th>
-                    <th>Station</th>
-                </tr>
-                </thead>
 
                 <tbody id="schedule-table">
                 <tr>
@@ -186,21 +165,8 @@
                 </tr>
                 </tbody>
             </table>
-            <div class="row info-all">
-                <h4 class="title" id="sch-info">Time</h4>
-                <p>
-                    <span class="glyphicon glyphicon-remove-circle"></span> Train arrives but does not continue
-                    <br>
-                    <span class="glyphicon glyphicon-ok-sign"></span> Service provided by RTD Bus
+        </div>
 
-                </p>
-            </div>
-        </div>
-        <div class="row submit-btn">
-                <button type="button"
-                        id="show-sch-btn"
-                        class="btn btn-primary btn-lg pull-right">Show Schedule</button>
-        </div>
     </div>
 
 
@@ -212,6 +178,8 @@
         var sData;
         var trainNum;
         var directionArray = [];
+        var allTrips = [];
+        var selected;
 
 
         // Helper to find unique stations
@@ -243,6 +211,25 @@
         var ajax = {
             parseJSONP: function(result){
                 sData = result;
+
+                var d=new Date();
+                var weekday = new Array(7);
+                weekday[0]="Sunday";
+                weekday[1]="Weekday";
+                weekday[2]="Weekday";
+                weekday[3]="Weekday";
+                weekday[4]="Weekday";
+                weekday[5]="Weekday";
+                weekday[6]="Saturday";
+
+                var day = weekday[d.getDay()];
+
+                setDirectionArray("Northbound", day);
+
+
+                swExample();
+
+
             }
         };
 
@@ -266,36 +253,7 @@
         * Highlight button based on user click
         * */
         $(document).ready(function () {
-        var direction, day;
-            $('ul.nav > li a').click(function (e) {
-                // highlight option the user clicked
-                $(this).closest('ul.nav').find('.active').removeClass('active');
-                $(this).parent().addClass('active');
 
-                // if the user clicked a Day option
-                if($(this).text() == "Weekday" || $(this).text() == "Saturday" || $(this).text() == "Sunday" ){
-
-                    //get the day that the user clicked
-                    day = $(this).parent().text();
-
-
-                }
-                // the user clicked the direction
-                else {
-                    $('ul.day').find('.active').removeClass('active');
-                    direction = $(this).parent().text();
-                    $("#d-time").html("<select>Choose Day</select>");
-                    $("#to-stations").html("<select>Choose Day</select>");
-                    $("#from-stations").text('<select>Choose Day</select>');
-                    day = ''
-                }
-
-                // console.log("The user choose: DAY: " + day +" DIRECTION: " + direction)
-
-
-                setDirectionArray(direction, day);
-                updateUserLocSelector();
-            });
         });
 
 
@@ -327,7 +285,7 @@
 
 
         $('#show-sch-btn').click( function () {
-            swExample();
+
             // if on schedule change to trip
             if ($(this).text() == "Show Schedule"){
                 var sch = [];
@@ -439,6 +397,7 @@
 
         // this sets an array that holds all the object associated with direction "Northbound Weekday"
         function setDirectionArray(dir, day){
+
             var dirday = dir + " " + day;
 
             for(var x =0; x < sData.length; x++){
@@ -447,9 +406,11 @@
                 }
             }
 
+
+
         }
 
-        function updateUserLocSelector(){
+        function updateFrom(){
 
             var stations = []
             //getting all the unique station names
@@ -459,25 +420,31 @@
                 }
             }
 
+
+            // console.log(stations)
+
             /*
             *
             * Set FROM options
             *
-            * */
+
             var stringFrom = '<option>Select</option>';
             for (var s = 0; s < stations.length; s++){
                 stringFrom += '<option>'+ stations[s] +'</option>';
             }
             document.getElementById("from-stations").innerHTML = stringFrom;
-        }
+             * */
+            return stations;
 
-        function updateUserDestSelector (from, time){
+         }
+
+        function updateTo (id, time, userDes){
             // get unique stations
             var stops = [];
 
             // find the train number associated with time and location
             for(var x =0; x < directionArray.length; x++){
-                if(directionArray[x]["station"] == from && directionArray[x]["time"] == time){
+                if(directionArray[x]["id"] == id && directionArray[x]["time"] == time){
                     trainNum =  directionArray[x]["train"];
                     break;
                 }
@@ -492,80 +459,209 @@
             }
 
             // removing zero element while not the user's location
-            while(stops[0]["station"] != from){
+            while(stops[0]["id"] != id){
                 stops.removeByIndex(0);
             }
             // also remove the object that is the same as the user location
             stops.removeByIndex(0);
 
-            /*
-             *
-             * Set TO options
-             *
-             *
-             * */
-            var stringTo = '';
 
-             if(stops.length > 0){
-                stringTo = '<option>Select</option>';
-                // from is the option selected
-                // since we dont want to include options prior we start from what the user selected
-                for (var s = 0; s < stops.length; s++){
-                    stringTo += '<option>'+ stops[s]["station"] +'</option>';
+            // remove trailing elements while its ont
+            for(var i = stops.length - 1; i >= 0; i--) {
+                if(stops[i]["station"] != userDes) {
+                    stops.removeByIndex(i);
+                } else if (stops[i]["station"] == userDes){
+                    break;
                 }
-            } else{
-                stringTo = '<option>Train arrives but does not continue</option>'
+
             }
 
-            document.getElementById("to-stations").innerHTML = stringTo;
-        }
 
-        function updateTimeSelector(userStation) {
+
+            if(stops.length > 0){
+                return stops;
+            } else{
+                return "Train arrives but does not continue";
+            }
+         }
+
+//        $('.table > tr').click(function() {
+//            alert("clock")
+//        });
+
+        function updateTimeSelector(arr) {
+
+
+            // getting the key of the first spinner to get users location
+            var id = parseInt(arr.keys[0]);
+            var destid = arr.keys[1];
+
+            var destinationStation = arr.values[1];
+
+
+            destinationStation = (destid.length <= 1)?'0'+destid+" "+destinationStation:destid+" "+destinationStation;
 
             // get times from given station
             var times = [];
             //getting all the unique station names
             for(var x =0; x < directionArray.length; x++){
-                if(directionArray[x]["station"].indexOf(userStation) > -1){
-                    times.push(directionArray[x]["time"])
+                if(directionArray[x]["id"] == id){
+                    times.push(directionArray[x])
                 }
             }
 
-            /*
-             *
-             * Set TIME options
-             *
-             * */
-            var stringTimes = '<option>Select</option>';
-            for (var s = 0; s < times.length; s++){
-                stringTimes += '<option>'+ times[s] +'</option>';
+            allTrips = [];
+
+            for(var c=0; c < times.length; c++){
+                var t = updateTo(id,times[c]["time"],destinationStation)
+                allTrips.push(t)
             }
-            document.getElementById("d-time").innerHTML = stringTimes;
+
+            console.log(allTrips)
+            /*
+            lkajdflkadflkajlkdsfjlkalsk
+
+
+            //using the train number get the object
+            for(var x =0; x < directionArray.length; x++){
+                if(directionArray[x]["train"] == trainNum){
+                    sch.push(directionArray[x])
+                }
+            }
+
+
+
+            var t1 = new Date();
+            var t2 = new Date();
+
+            // setting time
+            var pt = sch[sch.length-1]["time"].match(/(\d+)(?::(\d\d))?\s*(p?)/);
+            t1.setHours( parseInt(pt[1]) + (pt[3] ? 12 : 0) );
+            t1.setMinutes( parseInt(pt[2]) || 0 );
+
+            // setting time time 2
+            var pt2 = sch[0]["time"].match(/(\d+)(?::(\d\d))?\s*(p?)/);
+            t2.setHours( parseInt(pt2[1]) + (pt2[3] ? 12 : 0) );
+            t2.setMinutes( parseInt(pt2[2]) || 0 );
+
+            // estimate time
+            var ms = t1 - t2;
+            x = ms / 1000;
+            // var seconds = x % 60;
+            x /= 60;
+            // var minutes = x % 60;
+            x /= 60;
+            var hours = x % 24;
+
+            // truncate decimal
+            var trunHours = Math.floor(hours * 10) / 10;
+
+
+             lkajdflkadflkajlkdsfjlkalsk
+             */
+
+            var schl = "";
+
+            console.log(times)
+
+            for (var c =0; c < times.length; c++){
+//                var busAvil = (times[c]["rtd"]=="1")?'<span class="glyphicon glyphicon-ok-sign"></span>':'';
+//                var lastTrain = (times[c]["final"]=="1")?'<span class="glyphicon glyphicon-remove-circle"></span>':'';
+
+                if (allTrips[c][allTrips[c].length-1].hasOwnProperty("time") && allTrips[c][0].hasOwnProperty("time")){
+                    var t1 = new Date();
+                    var t2 = new Date();
+
+                    // setting time
+                    var pt = allTrips[c][allTrips[c].length-1]["time"].match(/(\d+)(?::(\d\d))?\s*(p?)/);
+                    t1.setHours( parseInt(pt[1]) + (pt[3] ? 12 : 0) );
+                    t1.setMinutes( parseInt(pt[2]) || 0 );
+
+                    // setting time time 2
+                    var pt2 = times[c]["time"].match(/(\d+)(?::(\d\d))?\s*(p?)/);
+                    t2.setHours( parseInt(pt2[1]) + (pt2[3] ? 12 : 0) );
+                    t2.setMinutes( parseInt(pt2[2]) || 0 );
+
+                    // estimate time
+                    var ms = t1 - t2;
+                    x = ms / 1000;
+                    // var seconds = x % 60;
+                    x /= 60;
+                    // var minutes = x % 60;
+                    x /= 60;
+                    var hours = x % 24;
+
+                    // truncate decimal
+                    var trunHours = Math.floor(hours * 10) / 10;
+
+                    schl += '<tr id="'+c+'">' +
+                            '<td>'+ "#"+times[c]["train"].replace(/_/g, ' ') +'</td>' +
+                            '<td>'+ times[c]["time"] + " - " + allTrips[c][allTrips[c].length-1]["time"]+'</td>' +
+                            '<td>'+ trunHours + "hours" + '</td>'+
+                            '</tr>';
+                }
+                else{
+
+                schl += '<tr id="'+c+'">' +
+                        '<td>'+ "#"+times[c]["train"].replace(/_/g, ' ') +'</td>' +
+                        '<td>no more tains</td>' +
+                        '<td></td>'+
+                        '</tr>';
+                }
+            }
+
+            // display schedule to user
+            document.getElementById("schedule-table").innerHTML = schl
+
         }
+
+        $('tr').click(function() {
+            // row was clicked
+//            var currentId = $(this).attr('id');
+            console.log("dkfj")
+
+//            alert(allTrips[parseInt(currentId)][0]["station"] + "")
+        });
 
 
         function swExample() {
-            var numbers = { 0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9 };
-            SpinningWheel.addSlot(numbers, 'right');
-            SpinningWheel.addSlot(numbers, 'right');
-            SpinningWheel.addSlot({ separator: '.' }, 'readonly shrink');
-            SpinningWheel.addSlot(numbers, 'right');
-            SpinningWheel.addSlot({ Kg: 'Kg', Lb: 'Lb', St: 'St' }, 'shrink');
+
+            var fromArr = updateFrom();
+
+            var left = {};
+            for (var i=0; i < fromArr.length; i++){
+
+                left[i+1] = fromArr[i].substr(3);
+            }
+
+
+            SpinningWheel.addSlot(left, 'left');
+
+            SpinningWheel.addSlot(left, 'right',2);
 
             SpinningWheel.setCancelAction(cancel);
             SpinningWheel.setDoneAction(done);
 
+
             SpinningWheel.open();
+
         }
 
         function done() {
             var results = SpinningWheel.getSelectedValues();
-            alert('values:' + results.values.join(', ') + ' - keys: ' + results.keys.join(', '));
+
+            selected = results;
+
+
+            updateTimeSelector(results);
+
         }
 
         function cancel() {
-            alert('cancelled!');
+
         }
+
+
 
     </script>
 
