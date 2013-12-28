@@ -132,7 +132,7 @@
                 <!--</div>-->
             <!--</div>-->
         <!--</div>-->
-        <button onclick="swExample()">Change Trip</button>
+        <button type="button" class="btn btn-default" onclick="swExample()">Change Trip</button>
         <div id="entire-sch">
             <!--class="table-responsive"-->
             <div class="row">
@@ -205,7 +205,185 @@
         Array.prototype.removeByIndex = function(index) {
             this.splice(index, 1);
         };
+        calcPrice = function(duration, from, destination){
+            //var from = $("#stationListFrom").val();
+            //var destination =  $("#stationListTo").val();
+            var zoneFrom = 0;
+            var zoneTo = 0;
 
+            from = from.substr(3);
+            destination = destination.substr(3);
+
+            switch (from) {
+                case 'Santa Fe Depot':
+                case 'South Capitol':
+                case 'Zia Road':
+                    zoneFrom = 1;
+                    break;
+                case 'NM 599':
+                    zoneFrom = 2;
+                    break;
+                case 'Kewa':
+                    zoneFrom = 3;
+                    break;
+                case 'Sandoval':
+                case 'Downtown Bernalillo':
+                    zoneFrom = 4;
+                    break;
+                case 'Sandia Pueblo':
+                case 'Journal Center':
+                case 'Downtown Albuquerque':
+                case 'Bernalillo County/International Sunport':
+                case 'Isleta Pueblo':
+                    zoneFrom = 5;
+                    break;
+                case 'Los Lunas':
+                case 'Belen':
+                    zoneFrom = 6;
+                    break;
+            }
+
+            switch (destination) {
+                case 'Santa Fe Depot':
+                case 'South Capitol':
+                case 'Zia Road':
+                    zoneTo = 1;
+                    break;
+                case 'NM 599':
+                    zoneTo = 2;
+                    break;
+                case 'Kewa':
+                    zoneTo = 3;
+                    break;
+                case 'Sandoval':
+                case 'Downtown Bernalillo':
+                    zoneTo = 4;
+                    break;
+                case 'Sandia Pueblo':
+                case 'Journal Center':
+                case 'Downtown Albuquerque':
+                case 'Bernalillo County/International Sunport':
+                case 'Isleta Pueblo' :
+                    zoneTo = 5;
+                    break;
+                case 'Los Lunas':
+                case 'Belen':
+                    zoneTo = 6;
+                    break;
+            }
+
+            var zones = Math.abs(zoneFrom - zoneTo) + 1;
+            //var duration = $('input[name=radio-duration]:checked').val();
+            var type = 'Regular';
+            var price = '$';
+            var discountPrice = '$';
+
+            switch(zones) {
+                case 1:
+                    if (duration == 'One-Trip') {
+                        discountPrice = '1';
+                        price = '1';}
+                    else if (duration == 'Day') {
+                        discountPrice = '2';
+                        price = '3';}
+                    else if (duration == 'Month') {
+                        discountPrice = '19';
+                        price = '39';}
+                    else if (duration == 'Annual') {
+                        discountPrice = '187';
+                        price = '385';}
+                    break;
+                case 2:
+                    if (duration == 'One-Trip') {
+                        discountPrice = '1';
+                        price = '3';}
+                    else if (duration == 'Day') {
+                        discountPrice = '2';
+                        price = '4';}
+                    else if (duration == 'month') {
+                        discountPrice = '28';
+                        price = '55';}
+                    else if (duration == 'annual') {
+                        discountPrice = '275';
+                        price = '550';}
+                    break;
+                case 3:
+                    if (duration == 'One-Trip') {
+                        discountPrice = '2';
+                        price = '5';}
+                    else if (duration == 'Day') {
+                        discountPrice = '3';
+                        price = '6';}
+                    else if (duration == 'Month') {
+                        discountPrice = '36';
+                        price = '72';}
+                    else if (duration == 'Annual') {
+                        discountPrice = '352';
+                        price = '715';}
+                    break;
+                case 4:
+                    if (duration == 'One-Trip') {
+                        discountPrice = '4';
+                        price = '8';}
+                    else if (duration == 'Day') {
+                        discountPrice = '6';
+                        price = '9';}
+                    else if (duration == 'Month') {
+                        discountPrice = '52';
+                        price = '105';}
+                    else if (duration == 'Annual') {
+                        discountPrice = '517';
+                        price = '1045';}
+                    break;
+                case 5:
+                    if (duration == 'One-Trip') {
+                        discountPrice = '4';
+                        price = '9';}
+                    else if (duration == 'Day') {
+                        discountPrice = '7';
+                        price = '10';}
+                    else if (duration == 'Month') {
+                        discountPrice = '55';
+                        price = '110';}
+                    else if (duration == 'Annual') {
+                        discountPrice = '550';
+                        price = '1100';}
+                    break;
+                case 6:
+                    if (duration == 'One-Trip') {
+                        discountPrice = '5';
+                        price = '10';}
+                    else if (duration == 'Day') {
+                        discountPrice = '8';
+                        price = '11';}
+                    else if (duration == 'Month') {
+                        discountPrice = '121';
+                        price = '61';}
+                    else if (duration == 'Annual') {
+                        discountPrice = '605';
+                        price = '1210';}
+                    break;
+            }
+
+            //$('#price').text(price);
+            //$('#discountPrice').text(discountPrice);
+
+
+            if(duration == 'Month'){
+                price = Number(parseFloat(price) / 30.0).toFixed(2);
+                discountPrice = Number(parseFloat(discountPrice) / 30.0).toFixed(2);
+            }
+            else if(duration == 'Annual'){
+                price = Number(parseFloat(price) / 365.0).toFixed(2);
+                discountPrice = Number(parseFloat(discountPrice) / 365.0).toFixed(2);
+            }
+
+            var foo =[];
+            foo.push(price);
+            foo.push(discountPrice);
+
+            return [price, discountPrice]
+        }
 
         //call to get data from server with callback
         var ajax = {
@@ -254,7 +432,14 @@
         * */
         $(document).ready(function () {
             $('#schedule').on('click', 'tr', function() {
-                console.log($(this).attr('id'))
+//                console.log()
+                var id = $(this).attr('id');
+                var price = calcPrice("One-Trip", allTrips[parseInt(id)][0]["station"], allTrips[parseInt(id)][allTrips[parseInt(id)].length-1]["station"])
+                alert("One-way: $" + price[0] + "\r\n" +
+                        "Depart: " + allTrips[parseInt(id)][0]["station"].substr(3) + "\r\n" +
+                        "Arrive: " + allTrips[parseInt(id)][allTrips[parseInt(id)].length-1]["station"].substr(3) + "\r\n\r\n" +
+                        "Departing at: " + allTrips[parseInt(id)][0]["time"] + "\r\n" +
+                        "Arriving at: " + allTrips[parseInt(id)][allTrips[parseInt(id)].length-1]["time"])
 
             });
 
@@ -465,8 +650,6 @@
 
             }
 
-
-
             if(stops.length > 0){
                 return stops;
             } else{
@@ -474,9 +657,6 @@
             }
          }
 
-//        $('.table > tr').click(function() {
-//            alert("clock")
-//        });
 
         function updateTimeSelector(arr) {
 
