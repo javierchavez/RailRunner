@@ -107,9 +107,9 @@
 
 
     <div class="container">
-        <button type="button" class="btn btn-default" id="trips-btn" onclick="showTrips()"><span class="glyphicon glyphicon-arrow-left"></span>Trips</button>
+        <button type="button" class="btn btn-default" id="trips-btn" onclick="showTrips()"><span class="glyphicon glyphicon-arrow-left"> Trips</span></button>
         <button type="button" class="btn btn-default" id="change-trp-btn" onclick="swExample()">Change Trip</button>
-        <button type="button" class="btn btn-default" id="set-dir-btn" onclick="setDir()"><span class="glyphicon glyphicon-sort"></span> </button>
+        <button type="button" class="btn btn-default" id="set-dir-btn" onclick="setDir()"><span class="glyphicon glyphicon-sort" id="dir"> N</span></button>
 
         <div id="data-entry">
             <div class="row">
@@ -698,13 +698,18 @@
                     x = ms / 1000;
                     // var seconds = x % 60;
                     x /= 60;
-                    // var minutes = x % 60;
+                    var minutes = x % 60;
                     x /= 60;
                     var hours = x % 24;
 
                     // truncate decimal
-                    var trunHours = Math.floor(hours * 10) / 10;
-
+                    var truncated = Math.floor(hours * 10) / 10;
+                    var time = 0;
+                    if(truncated >= 1){
+                        time = (Math.floor(hours * 10) / 10).toString() + " hours";
+                    } else {
+                        time = (Math.floor(minutes * 10) / 10).toString() + " minuets";
+                    }
                     // var busAvil = (times[c]["rtd"]=="1")?'<span class="glyphicon glyphicon-ok-sign"></span>':'';
                     // var lastTrain = (times[c]["final"]=="1")?'<span class="glyphicon glyphicon-remove-circle"></span>':'';
 
@@ -719,7 +724,7 @@
                         schl += '<tr id="'+c+'" '+ bli +'>' +
                                 '<td>'+ "#"+times[c]["train"].replace(/_/g, ' ') +'</td>' +
                                 '<td>'+ times[c]["time"] + " - " + allTrips[c][allTrips[c].length-1]["time"]+'</td>' +
-                                '<td>'+ trunHours + "hours" + '</td>'+
+                                '<td>'+ time + '</td>'+
                                 '</tr>';
                     }
                 }
@@ -735,8 +740,8 @@
             var trip = allTrips[id];
 
             // setting data to UI
-            $('#depart').text("Depart: " + trip[0]["station"]);
-            $('#arrive').text("Arrive: " +trip[trip.length-1]["station"]);
+            $('#depart').text("Depart: " + trip[0]["station"].substr(3));
+            $('#arrive').text("Arrive: " +trip[trip.length-1]["station"].substr(3));
             $('#depart-time').text("Depart at: " +trip[0]["time"]);
             $('#arrive-time').text("Arrive at: " +trip[trip.length-1]["time"]);
 
@@ -793,7 +798,7 @@
         function done() {
             var results = SpinningWheel.getSelectedValues();
             selected = results;
-            console.log(results)
+            //console.log(results)
             updateTimeSelector(results);
         }
 
@@ -803,8 +808,10 @@
         function setDir(){
             if(direction == "Northbound"){
                 direction = "Southbound";
+                $("#dir").text("S")
             } else {
                 direction = "Northbound";
+                $("#dir").text("N")
             }
             var day = getDay();
 
@@ -815,11 +822,11 @@
 
         function showTrips() {
             // adjust views
-            $("#change-trp-btn").fadeIn();
-            $("#set-dir-btn").fadeIn();
             $("#trips-btn").fadeOut();
             $("#data-entry").fadeOut();
             $("#entire-sch").delay(500).fadeIn();
+            $("#set-dir-btn").fadeIn();
+            $("#change-trp-btn").fadeIn();
         }
 
 
