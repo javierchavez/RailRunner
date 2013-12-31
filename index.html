@@ -415,15 +415,14 @@
         * */
         $(document).ready(function () {
             $('#schedule').on('click', 'tr', function() {
-//                console.log()
+
                 var id = $(this).attr('id');
 
                 // adjust views
-
-                // $(this).text("Change Trip");
+                $("#change-trp-btn").fadeOut();
+                $("#set-dir-btn").fadeOut();
                 $("#entire-sch").fadeOut();
                 $("#data-entry").delay(500).fadeIn();
-
                 $("#trips-btn").fadeIn();
                 detailedSch(parseInt(id));
 
@@ -816,9 +815,6 @@
 
         function showTrips() {
             // adjust views
-
-            $("#change-trp-btn").fadeOut();
-            $("#set-dir-btn").fadeOut();
             $("#trips-btn").fadeOut();
             $("#data-entry").fadeOut();
             $("#entire-sch").delay(500).fadeIn();
