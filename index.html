@@ -108,8 +108,8 @@
 
     <div class="container">
         <button type="button" class="btn btn-default" id="trips-btn" onclick="showTrips()"><span class="glyphicon glyphicon-arrow-left"></span>Trips</button>
-        <button type="button" class="btn btn-default" onclick="swExample()">Change Trip</button>
-        <button type="button" class="btn btn-default" onclick="setDir()"><span class="glyphicon glyphicon-sort"></span> </button>
+        <button type="button" class="btn btn-default" id="change-trp-btn" onclick="swExample()">Change Trip</button>
+        <button type="button" class="btn btn-default" id="set-dir-btn" onclick="setDir()"><span class="glyphicon glyphicon-sort"></span> </button>
 
         <div id="data-entry">
             <div class="row">
@@ -417,24 +417,15 @@
             $('#schedule').on('click', 'tr', function() {
 //                console.log()
                 var id = $(this).attr('id');
-//                var trip = allTrips[parseInt(id)][0];
-//                var price = calcPrice("One-Trip", trip["station"], allTrips[parseInt(id)][allTrips[parseInt(id)].length-1]["station"])
-//                alert("One-way: $" + price[0] + "\r\n" +
-//                        "Depart: " + trip["station"].substr(3) + "\r\n" +
-//                        "Arrive: " + allTrips[parseInt(id)][allTrips[parseInt(id)].length-1]["station"].substr(3) + "\r\n\r\n" +
-//                        "Departing at: " + trip["time"] + "\r\n" +
-//                        "Arriving at: " + allTrips[parseInt(id)][allTrips[parseInt(id)].length-1]["time"])
 
                 // adjust views
-                $(this).fadeOut();
-//                $(this).text("Change Trip");
+
+                // $(this).text("Change Trip");
                 $("#entire-sch").fadeOut();
                 $("#data-entry").delay(500).fadeIn();
 
                 $("#trips-btn").fadeIn();
                 detailedSch(parseInt(id));
-
-
 
             });
         });
@@ -733,15 +724,6 @@
                                 '</tr>';
                     }
                 }
-
-//                else{
-//
-//                schl += '<tr id="'+c+'">' +
-//                        '<td>'+ "#"+times[c]["train"].replace(/_/g, ' ') +'</td>' +
-//                        '<td>no more tains</td>' +
-//                        '<td></td>'+
-//                        '</tr>';
-//                }
             }
 
             // display schedule to user
@@ -772,7 +754,6 @@
                 schl += '<tr>' +
                         '<td>'+ "#"+trip[x]["train"].replace(/_/g, ' ') +'</td>' +
                         '<td>'+ trip[x]["time"] +'</td>' +
-
                         '</tr>';
 
             }
@@ -836,6 +817,8 @@
         function showTrips() {
             // adjust views
 
+            $("#change-trp-btn").fadeOut();
+            $("#set-dir-btn").fadeOut();
             $("#trips-btn").fadeOut();
             $("#data-entry").fadeOut();
             $("#entire-sch").delay(500).fadeIn();
