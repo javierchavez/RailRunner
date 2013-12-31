@@ -187,6 +187,7 @@
         Array.prototype.removeByIndex = function(index) {
             this.splice(index, 1);
         };
+        // Helper to get the current day with respect to train sch.
         getDay = function(){
             var d=new Date();
             var weekday = new Array(7);
@@ -388,12 +389,7 @@
                 var day = getDay();
 
                 setDirectionArray(direction, day);
-
-                    SpinningWheel.reset();
-                    swExample();
-
-
-
+                swExample();
 
             }
         };
@@ -441,11 +437,6 @@
 
 
             });
-
-//            $('.sw-left').on('click', 'li', function() {
-//                console.log("kdf")
-//            });
-
         });
 
 
@@ -663,7 +654,6 @@
 
         function updateTimeSelector(arr) {
 
-
             // getting the key of the first spinner to get users location
             var id = parseInt(arr.keys[0]);
             var destid = arr.keys[1];
@@ -760,17 +750,23 @@
         }
 
         function detailedSch(id){
+            // getting trip from array (2d)
             var trip = allTrips[id];
 
+            // setting data to UI
             $('#depart').text("Depart: " + trip[0]["station"]);
             $('#arrive').text("Arrive: " +trip[trip.length-1]["station"]);
             $('#depart-time').text("Depart at: " +trip[0]["time"]);
             $('#arrive-time').text("Arrive at: " +trip[trip.length-1]["time"]);
+
+            // Calculating price of trip
             var price = calcPrice("One-Trip", trip[0]["station"], allTrips[parseInt(id)][allTrips[parseInt(id)].length-1]["station"])
 
+            // setting the price to UI
             $('#fare').text("$"+price[0]);
 
-            console.log(trip)
+            // console.log(trip)
+
             var schl = "";
             for(var x = 0; x < trip.length; x++){
                 schl += '<tr>' +
@@ -788,8 +784,10 @@
             var d = new Date(), // current time
                     hours = d.getHours(),
                     mins = d.getMinutes();
+            // adding 30min to current time
             d.setMinutes(d.getMinutes() +30);
-            console.log(d + " " + time)
+            //console.log(d + " " + time)
+            // if the hours match and the mins of the arg give are less then current time
             return d.getHours() == time.getHours() && time.getMinutes() < d.getMinutes();
         }
 
@@ -803,7 +801,7 @@
             }
 
             SpinningWheel.addSlot(left, 'left');
-            SpinningWheel.addSlot(left, 'right',2);
+            SpinningWheel.addSlot(left, 'right', 2);
             SpinningWheel.setCancelAction(cancel);
             SpinningWheel.setDoneAction(done);
 
@@ -829,8 +827,9 @@
                 direction = "Northbound";
             }
             var day = getDay();
+
             setDirectionArray(direction, day);
-            SpinningWheel.reset();
+
             swExample();
         }
 
