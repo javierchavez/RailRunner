@@ -18,8 +18,6 @@
     <script src="js/spinningwheel.js"></script>
     <link rel="stylesheet" href="css/spinningwheel.css">
 
-
-
     <style type="text/css">
 
 
@@ -792,6 +790,7 @@
 
             SpinningWheel.open();
 
+
         }
 
 
@@ -803,21 +802,22 @@
         }
 
         function cancel() {
+            setDir();
         }
 
         function setDir(){
+            //SpinningWheel.destroy();
             if(direction == "Northbound"){
                 direction = "Southbound";
-                $("#dir").text("S")
+                $("#dir").text(" S")
             } else {
                 direction = "Northbound";
-                $("#dir").text("N")
+                $("#dir").text(" N")
             }
             var day = getDay();
 
             setDirectionArray(direction, day);
-
-            swExample();
+//            swExample();
         }
 
         function showTrips() {
@@ -827,8 +827,8 @@
             $("#entire-sch").delay(500).fadeIn();
             $("#set-dir-btn").fadeIn();
             $("#change-trp-btn").fadeIn();
-        }
 
+        }
 
 
     </script>
