@@ -30,6 +30,15 @@
             to { opacity: 0.0; }
         }
 
+        #trip-row {
+            /*background-color: lightgrey;*/
+            padding: 2% 4%;
+        }
+
+        #fare {
+            color: #DC9125;
+        }
+
         .blink {
             -webkit-animation-name: blink;
             -webkit-animation-iteration-count: infinite;
@@ -105,21 +114,24 @@
 
 
     <div class="container">
-        <button type="button" class="btn btn-default" id="trips-btn" onclick="showTrips()"><span class="glyphicon glyphicon-arrow-left"> Trips</span></button>
         <button type="button" class="btn btn-default" id="change-trp-btn" onclick="swExample()">Change Trip</button>
         <button type="button" class="btn btn-default" id="set-dir-btn" onclick="setDir()"><span class="glyphicon glyphicon-sort" id="dir"> N</span></button>
 
         <div id="data-entry">
-            <div class="row">
-                <div class="col-md-4" id="depart">.col-md-4</div>
-                <div class="col-md-4" id="arrive">.col-md-4</div>
-                <div class="col-md-4" id="fare"></div>
+            <div class="row" id="trip-row">
+                <button type="button" class="btn btn-default pull-left" id="trips-btn" onclick="showTrips()"><span class="glyphicon glyphicon-arrow-left"> Change</span></button>
+                <div class="row pull-right">
+                    <div class="col-md-1" id="depart-time">.col-md-4</div>
+                    <div class="col-md-1" id="arrive-time">.col-md-4</div>
+                </div>
+
+                <!--<div class="col-md-4" id="duration"></div>-->
 
             </div>
             <div class="row">
-                <div class="col-md-4" id="depart-time">.col-md-4</div>
-                <div class="col-md-4" id="arrive-time">.col-md-4</div>
-                <div class="col-md-4" id="duration"></div>
+                <div class="col-md-4" id="depart">.col-md-4</div>
+                <div class="col-md-4" id="arrive">.col-md-4</div>
+                <div class="col-md-4 pull-right" id="fare"></div>
 
             </div>
             <table id="detail-schedule" class="table">
@@ -388,7 +400,7 @@
 
                 setDirectionArray(direction, day);
                 swExample();
-
+                return false;
             }
         };
 
@@ -424,6 +436,7 @@
                 $("#trips-btn").fadeIn();
                 detailedSch(parseInt(id));
 
+                return false;
             });
         });
 
@@ -646,7 +659,7 @@
             var id = parseInt(arr.keys[0]);
             var destid = arr.keys[1];
 
-            console.log(id + " " + destid)
+            //console.log(id + " " + destid)
 
             var destinationStation = arr.values[1];
 
@@ -730,7 +743,7 @@
 
             // display schedule to user
             document.getElementById("schedule-table").innerHTML = schl
-
+            return false;
         }
 
         function detailedSch(id){
@@ -740,8 +753,8 @@
             // setting data to UI
             $('#depart').text("Depart: " + trip[0]["station"].substr(3));
             $('#arrive').text("Arrive: " +trip[trip.length-1]["station"].substr(3));
-            $('#depart-time').text("Depart at: " +trip[0]["time"]);
-            $('#arrive-time').text("Arrive at: " +trip[trip.length-1]["time"]);
+            $('#depart-time').text("Departing at: " +trip[0]["time"]);
+            $('#arrive-time').text("Arriving at: " +trip[trip.length-1]["time"]);
 
             // Calculating price of trip
             var price = calcPrice("One-Trip", trip[0]["station"], allTrips[parseInt(id)][allTrips[parseInt(id)].length-1]["station"])
@@ -759,7 +772,8 @@
                         '</tr>';
 
             }
-            document.getElementById("detail-table").innerHTML = schl
+            document.getElementById("detail-table").innerHTML = schl;
+            return false;
 
         }
 
@@ -789,7 +803,7 @@
             SpinningWheel.setDoneAction(done);
 
             SpinningWheel.open();
-
+            return false;
 
         }
 
@@ -818,6 +832,7 @@
 
             setDirectionArray(direction, day);
 //            swExample();
+            return false;
         }
 
         function showTrips() {
@@ -827,7 +842,7 @@
             $("#entire-sch").delay(500).fadeIn();
             $("#set-dir-btn").fadeIn();
             $("#change-trp-btn").fadeIn();
-
+            return false;
         }
 
 
