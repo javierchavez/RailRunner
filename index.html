@@ -785,7 +785,7 @@
             d.setMinutes(d.getMinutes() +30);
             //console.log(d + " " + time)
             // if the hours match and the mins of the arg give are less then current time
-            return d.getHours() == time.getHours() && time.getMinutes() < d.getMinutes();
+            return (d.getHours() == time.getHours() && time < d.getMinutes()) || (d.getHours() == time.getHours()-1 && time < d.getMinutes());
         }
 
         function swExample() {
