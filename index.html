@@ -45,6 +45,11 @@
             -webkit-animation-timing-function: cubic-bezier(1.0,0,0,1.0);
             -webkit-animation-duration: 2s;
         }
+
+        .gone {
+            opacity: 0.65;
+        }
+
         /*@media(max-width:767px){*/
 
             /*.title, .info-all {padding-left: 3%; }*/
@@ -153,7 +158,7 @@
                 <!--<h4 class="title">Your schedule</h4>-->
                 <p id="quite-c"></p>
             </div>
-            <table id="schedule" class="table table-striped">
+            <table id="schedule" class="table">
 
 
                 <tbody id="schedule-table">
@@ -174,7 +179,7 @@
         var trainNum;
         var directionArray = [];
         var allTrips = [];
-        var selected;
+        var selected = null;
         var current_trip = {}
         var direction = "Northbound";
 
@@ -732,6 +737,7 @@
 
                     //check the time to see if its with in the 30min threshold
                     var bli = (checkTime(t2))?' class="blink" ':'';
+
                     var ct = new Date(), // current time
                             hours = ct.getHours(),
                             mins = ct.getMinutes();
@@ -739,6 +745,12 @@
                     if(ct < t2){
 
                         schl += '<tr id="'+c+'" '+ bli +'>' +
+                                '<td>'+ "#"+times[c]["train"].replace(/_/g, ' ') +'</td>' +
+                                '<td>'+ times[c]["time"] + " - " + allTrips[c][allTrips[c].length-1]["time"]+'</td>' +
+                                '<td>'+ time + '</td>'+
+                                '</tr>';
+                    } else{
+                        schl += '<tr id="'+c+'"' +'class="gone" >' +
                                 '<td>'+ "#"+times[c]["train"].replace(/_/g, ' ') +'</td>' +
                                 '<td>'+ times[c]["time"] + " - " + allTrips[c][allTrips[c].length-1]["time"]+'</td>' +
                                 '<td>'+ time + '</td>'+
@@ -869,18 +881,15 @@
     }
 
     function doneDay(){
-        if(direction == "Northbound"){
-            direction = "Southbound";
+        var res = SpinningWheel.getSelectedValues();
 
-            $("#dir").text("Going South")
-            console.log(allTrips)
-        } else {
-            direction = "Northbound";
-            $("#dir").text("Going North")
+        var newDay = res.keys[0];
+
+        setDirectionArray(direction, newDay);
+//        check to see if selected is not null
+        if (selected != null) {
+            updateTimeSelector(selected);
         }
-        var day = getDay();
-
-        setDirectionArray(direction, day);
     }
 
 
