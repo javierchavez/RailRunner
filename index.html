@@ -883,7 +883,9 @@
     function doneDay(){
         var res = SpinningWheel.getSelectedValues();
 
-        var newDay = res.keys[0];
+        var newDay = res.values[0];
+
+        console.log(newDay)
 
         setDirectionArray(direction, newDay);
 //        check to see if selected is not null
