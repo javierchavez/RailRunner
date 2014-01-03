@@ -21,7 +21,13 @@
     <style type="text/css">
 
 
-
+        /*body {*/
+            /*background: url(css/bkground.png) no-repeat center center fixed;*/
+            /*-webkit-background-size: cover;*/
+            /*-moz-background-size: cover;*/
+            /*-o-background-size: cover;*/
+            /*background-size: cover;*/
+        /*}*/
 
         /*#holidayList { display: none; }*/
         #data-entry, #trips-btn { display: none; }
@@ -50,65 +56,67 @@
             opacity: 0.65;
         }
 
-        /*@media(max-width:767px){*/
-
-            /*.title, .info-all {padding-left: 3%; }*/
-            /*#quite-c {padding-right: 3%; color: #DC9125; }*/
-            /*.submit-btn { padding-right: 3%; padding-bottom: 3%}*/
-            /*.day, .direction {*/
-                /*padding-right: 3%;*/
-            /*}*/
-            /*.pull-right {*/
-                /*float: right!important;*/
-            /*}*/
-        /*}*/
-        /*@media(min-width:768px){*/
-            /*.pull-right {*/
-                /*float: left!important;*/
-            /*}*/
-
-        /*}*/
-
-        /*.info-all { float: right!important;}*/
-        /*#quite-c {color: #DC9125; float: right!important;}*/
 
 
-        /*a{ color: #DC9125 }*/
+        @media(max-width:767px){
+
+            .title, .info-all {padding-left: 3%; }
+            #quite-c {padding-right: 3%; color: #DC9125; }
+            .submit-btn { padding-right: 3%; padding-bottom: 3%}
+            .day, .direction {
+                padding-right: 3%;
+            }
+            .pull-right {
+                float: right!important;
+            }
+        }
+        @media(min-width:768px){
+            .pull-right {
+                float: left!important;
+            }
+
+        }
+
+        .info-all { float: right!important;}
+        #quite-c {color: #DC9125; float: right!important;}
 
 
-        /*h4{ color: #DC9125 }*/
+        a{ color: #DC9125 }
 
-        /*.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {*/
-            /*background-color: #ffffff;*/
-            /*border-color: #DC9125;*/
 
-            /*border-radius: 6px;*/
-            /*border: solid 1px #DC9125;*/
+        h4{ color: #DC9125 }
 
-            /*yello #DC9125*/
-            /*gray #8C8C8E*/
-        /*}*/
-        /*.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {*/
-            /*color: #77171E;*/
-            /*background-color: #ffffff;*/
-            /*border-color: #DC9125;*/
-        /*}*/
+        .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+            background-color: #ffffff;
+            border-color: #DC9125;
 
-        /*.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {*/
-            /*color: #DC9125*/
-        /*}*/
+            border-radius: 6px;
+            border: solid 1px #DC9125;
 
-        /*.btn, .btn-primary*/
-        /*{*/
-            /*color: #77171E;*/
-            /*background-color: #ffffff;*/
-            /*border-color: #DC9125;*/
-        /*}*/
-        /*.submit-btn { margin-top: 4%}*/
+            yello #DC9125
+            gray #8C8C8E
+        }
+        .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+            color: #77171E;
+            background-color: #ffffff;
+            border-color: #DC9125;
+        }
 
-        /*li > a:hover {*/
-            /*color: black;*/
-        /*}*/
+        .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+            color: #DC9125
+        }
+
+        .btn, .btn-primary
+        {
+            color: #77171E;
+            background-color: #ffffff;
+            border-color: #DC9125;
+        }
+        .submit-btn { margin-top: 4%}
+
+        li > a:hover {
+            color: black;
+        }
     </style>
 
 
@@ -176,6 +184,7 @@
 
         // Station data from server
         var sData;
+        var day;
         var trainNum;
         var directionArray = [];
         var allTrips = [];
@@ -406,7 +415,7 @@
             parseJSONP: function(result){
                 sData = result;
 
-                var day = getDay();
+                day = getDay();
 
                 setDirectionArray(direction, day);
                 $("#dir").text(direction)
@@ -738,9 +747,16 @@
                     //check the time to see if its with in the 30min threshold
                     var bli = (checkTime(t2))?' class="blink" ':'';
 
+                    var today = getDay();
+
+
                     var ct = new Date(), // current time
                             hours = ct.getHours(),
                             mins = ct.getMinutes();
+
+                    var fade = (day==today)? ' class="gone" ' : '';
+
+                    console.log(today + " " + day)
 
                     if(ct < t2){
 
@@ -750,7 +766,7 @@
                                 '<td>'+ time + '</td>'+
                                 '</tr>';
                     } else{
-                        schl += '<tr id="'+c+'"' +'class="gone" >' +
+                        schl += '<tr id="'+c+'" ' + fade +'>' +
                                 '<td>'+ "#"+times[c]["train"].replace(/_/g, ' ') +'</td>' +
                                 '<td>'+ times[c]["time"] + " - " + allTrips[c][allTrips[c].length-1]["time"]+'</td>' +
                                 '<td>'+ time + '</td>'+
@@ -883,11 +899,9 @@
     function doneDay(){
         var res = SpinningWheel.getSelectedValues();
 
-        var newDay = res.values[0];
+        day = res.values[0];
 
-        console.log(newDay)
-
-        setDirectionArray(direction, newDay);
+        setDirectionArray(direction, day);
 //        check to see if selected is not null
         if (selected != null) {
             updateTimeSelector(selected);
