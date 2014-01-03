@@ -110,13 +110,17 @@
 
 </head>
 <body>
-
-
+    <div class="container">
+        <button type="button" class="btn btn-default" id="change-trp-btn" onclick="swDay()">Change Day</button>
+        <button type="button" class="btn btn-default pull-right" id="change-day" onclick="swExample()">Change Trip</button>
+    </div>
 
     <div class="container">
-        <button type="button" class="btn btn-default" id="change-trp-btn" onclick="swExample()">Change Trip</button>
-        <button type="button" class="btn btn-default" id="set-dir-btn" onclick="setDir()"><span class="glyphicon glyphicon-sort" id="dir"> N</span></button>
+        <!--<button type="button" class="btn btn-default" id="change-trp-btn" onclick="swExample()">Change Trip</button>-->
+        <!--<button type="button" class="btn btn-default" id="set-dir-btn" onclick="setDir()"><span class="glyphicon glyphicon-sort" id="dir"> N</span></button>-->
 
+
+        <p id="dir" ></p>
         <div id="data-entry">
             <div class="row" id="trip-row">
                 <button type="button" class="btn btn-default pull-left" id="trips-btn" onclick="showTrips()"><span class="glyphicon glyphicon-arrow-left"> Change</span></button>
@@ -171,6 +175,7 @@
         var directionArray = [];
         var allTrips = [];
         var selected;
+        var current_trip = {}
         var direction = "Northbound";
 
 
@@ -399,6 +404,7 @@
                 var day = getDay();
 
                 setDirectionArray(direction, day);
+                $("#dir").text(direction)
                 swExample();
                 return false;
             }
@@ -719,7 +725,7 @@
                     if(truncated >= 1){
                         time = (Math.floor(hours * 10) / 10).toString() + " hours";
                     } else {
-                        time = (Math.floor(minutes * 10) / 10).toString() + " minuets";
+                        time = (Math.floor(minutes * 10) / 10).toString() + " minutes";
                     }
                     // var busAvil = (times[c]["rtd"]=="1")?'<span class="glyphicon glyphicon-ok-sign"></span>':'';
                     // var lastTrain = (times[c]["final"]=="1")?'<span class="glyphicon glyphicon-remove-circle"></span>':'';
@@ -823,10 +829,12 @@
             //SpinningWheel.destroy();
             if(direction == "Northbound"){
                 direction = "Southbound";
-                $("#dir").text(" S")
+
+                $("#dir").text("Going South")
+                console.log(allTrips)
             } else {
                 direction = "Northbound";
-                $("#dir").text(" N")
+                $("#dir").text("Going North")
             }
             var day = getDay();
 
@@ -844,6 +852,36 @@
             $("#change-trp-btn").fadeIn();
             return false;
         }
+
+    function swDay(){
+
+        var fromArr = updateFrom();
+        var left = {}
+        left["weekday"] = "Weekday";
+        left["saturday"] = "Saturday";
+        left["sunday"] = "Sunday";
+
+        SpinningWheel.addSlot(left, 'left');
+        SpinningWheel.setDoneAction(doneDay);
+        SpinningWheel.setCancelAction(cancel)
+        SpinningWheel.open();
+        return false;
+    }
+
+    function doneDay(){
+        if(direction == "Northbound"){
+            direction = "Southbound";
+
+            $("#dir").text("Going South")
+            console.log(allTrips)
+        } else {
+            direction = "Northbound";
+            $("#dir").text("Going North")
+        }
+        var day = getDay();
+
+        setDirectionArray(direction, day);
+    }
 
 
     </script>
