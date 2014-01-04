@@ -58,65 +58,65 @@
 
 
 
-        @media(max-width:767px){
+        /*@media(max-width:767px){*/
 
-            .title, .info-all {padding-left: 3%; }
-            #quite-c {padding-right: 3%; color: #DC9125; }
-            .submit-btn { padding-right: 3%; padding-bottom: 3%}
-            .day, .direction {
-                padding-right: 3%;
-            }
-            .pull-right {
-                float: right!important;
-            }
-        }
-        @media(min-width:768px){
-            .pull-right {
-                float: left!important;
-            }
+            /*.title, .info-all {padding-left: 3%; }*/
+            /*#quite-c {padding-right: 3%; color: #DC9125; }*/
+            /*.submit-btn { padding-right: 3%; padding-bottom: 3%}*/
+            /*.day, .direction {*/
+                /*padding-right: 3%;*/
+            /*}*/
+            /*.pull-right {*/
+                /*float: right!important;*/
+            /*}*/
+        /*}*/
+        /*@media(min-width:768px){*/
+            /*.pull-right {*/
+                /*float: left!important;*/
+            /*}*/
 
-        }
+        /*}*/
 
-        .info-all { float: right!important;}
-        #quite-c {color: #DC9125; float: right!important;}
-
-
-        a{ color: #DC9125 }
+        /*.info-all { float: right!important;}*/
+        /*#quite-c {color: #DC9125; float: right!important;}*/
 
 
-        h4{ color: #DC9125 }
+        /*a{ color: #DC9125 }*/
 
-        .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
-            background-color: #ffffff;
-            border-color: #DC9125;
 
-            border-radius: 6px;
-            border: solid 1px #DC9125;
+        /*h4{ color: #DC9125 }*/
 
-            yello #DC9125
-            gray #8C8C8E
-        }
-        .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
-            color: #77171E;
-            background-color: #ffffff;
-            border-color: #DC9125;
-        }
+        /*.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {*/
+            /*background-color: #ffffff;*/
+            /*border-color: #DC9125;*/
 
-        .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
-            color: #DC9125
-        }
+            /*border-radius: 6px;*/
+            /*border: solid 1px #DC9125;*/
 
-        .btn, .btn-primary
-        {
-            color: #77171E;
-            background-color: #ffffff;
-            border-color: #DC9125;
-        }
-        .submit-btn { margin-top: 4%}
+            /*yello #DC9125*/
+            /*gray #8C8C8E*/
+        /*}*/
+        /*.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {*/
+            /*color: #77171E;*/
+            /*background-color: #ffffff;*/
+            /*border-color: #DC9125;*/
+        /*}*/
 
-        li > a:hover {
-            color: black;
-        }
+        /*.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {*/
+            /*color: #DC9125*/
+        /*}*/
+
+        /*.btn, .btn-primary*/
+        /*{*/
+            /*color: #77171E;*/
+            /*background-color: #ffffff;*/
+            /*border-color: #DC9125;*/
+        /*}*/
+        /*.submit-btn { margin-top: 4%}*/
+
+        /*li > a:hover {*/
+            /*color: black;*/
+        /*}*/
     </style>
 
 
@@ -452,6 +452,8 @@
                 $("#change-trp-btn").fadeOut();
                 $("#set-dir-btn").fadeOut();
                 $("#entire-sch").fadeOut();
+                $("#dir").fadeOut();
+                $("#change-day").fadeOut();
                 $("#data-entry").delay(500).fadeIn();
                 $("#trips-btn").fadeIn();
                 detailedSch(parseInt(id));
@@ -878,6 +880,9 @@
             $("#entire-sch").delay(500).fadeIn();
             $("#set-dir-btn").fadeIn();
             $("#change-trp-btn").fadeIn();
+            $("#dir").fadeIn();
+            $("#change-day").fadeIn();
+
             return false;
         }
 
