@@ -712,7 +712,7 @@
 
         function cancel() {
             setDir();
-            //$("#schedule").text("")
+
         }
 
         function setDir(){
@@ -730,10 +730,23 @@
 
 
             setDirectionArray(direction, day);
-
+            var  sel = {};
             // check to see if selected is not null
             if (selected != null) {
-                updateTimeSelector(selected);
+                //console.log(selected)
+
+                var k1 = selected.keys[0]
+                var k2 = selected.keys[1]
+                var v1 = selected.values[0]
+                var v2 = selected.values[1]
+                console.log(selected)
+
+                sel.keys = [k2,k1]
+                sel.values = [v2,v1]
+                console.log(sel)
+
+                updateTimeSelector(sel);
+
             }
 
             return false;
@@ -752,32 +765,32 @@
             return false;
         }
 
-    function swDay(){
+        function swDay(){
 
-        var fromArr = updateFrom();
-        var left = {}
-        left["weekday"] = "Weekday";
-        left["saturday"] = "Saturday";
-        left["sunday"] = "Sunday";
+            var fromArr = updateFrom();
+            var left = {}
+            left["weekday"] = "Weekday";
+            left["saturday"] = "Saturday";
+            left["sunday"] = "Sunday";
 
-        SpinningWheel.addSlot(left, 'left');
-        SpinningWheel.setDoneAction(doneDay);
-        SpinningWheel.setCancelAction(cancel)
-        SpinningWheel.open();
-        return false;
-    }
-
-    function doneDay(){
-        var res = SpinningWheel.getSelectedValues();
-
-        day = res.values[0];
-
-        setDirectionArray(direction, day);
-//        check to see if selected is not null
-        if (selected != null) {
-            updateTimeSelector(selected);
+            SpinningWheel.addSlot(left, 'left');
+            SpinningWheel.setDoneAction(doneDay);
+            SpinningWheel.setCancelAction(cancel)
+            SpinningWheel.open();
+            return false;
         }
-    }
+
+        function doneDay(){
+            var res = SpinningWheel.getSelectedValues();
+
+            day = res.values[0];
+
+            setDirectionArray(direction, day);
+    //        check to see if selected is not null
+            if (selected != null) {
+                updateTimeSelector(selected);
+            }
+        }
 
 
     </script>
