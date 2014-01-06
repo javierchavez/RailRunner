@@ -463,146 +463,6 @@
         });
 
 
-
-        /*
-        $('#from-stations').change(function () {
-            //get the location of the user
-            var userLocation = $(this).val();
-            // check to make sure its valid
-            if(userLocation != "Select" && userLocation != "Choose your location"){
-                // save the position of the option selected
-                var d = $(this)[0].selectedIndex;
-
-
-                updateTimeSelector(userLocation);
-
-            } else {
-                // if not valid notify the user
-                $('#d-time').html('<option>Choose your location</option>')
-            }
-        });
-
-        $('#d-time').change(function(){
-            // var index = $('#from-stations')[0].selectedIndex;
-            var d = $('#from-stations').val();
-            var t = $(this).val();
-            updateUserDestSelector (d, t);
-        });
-        */
-
-        /*
-        $('#show-sch-btn').click( function () {
-
-            // if on schedule change to trip
-            if ($(this).text() == "Show Schedule"){
-                var sch = [];
-                var userLoc = $('#from-stations').val();
-                var userDes = $('#to-stations').val();
-                var userTime = $('#d-time').val();
-
-
-                //using the train number get the object
-                for(var x =0; x < directionArray.length; x++){
-                    if(directionArray[x]["train"] == trainNum){
-                        sch.push(directionArray[x])
-                    }
-                }
-
-                // remove trailing elements while its ont
-                for(var i = sch.length - 1; i >= 0; i--) {
-                    if(sch[i]["station"] != userDes) {
-                        sch.removeByIndex(i);
-                    } else if (sch[i]["station"] == userDes){
-                        break;
-                    }
-
-                }
-
-                // removing zero element while not the user's location
-                while(sch[0]["station"] != userLoc){
-                    sch.removeByIndex(0);
-                }
-
-                var t1 = new Date();
-                var t2 = new Date();
-
-                // setting time
-                var pt = sch[sch.length-1]["time"].match(/(\d+)(?::(\d\d))?\s*(p?)/);
-                t1.setHours( parseInt(pt[1]) + (pt[3] ? 12 : 0) );
-                t1.setMinutes( parseInt(pt[2]) || 0 );
-
-                // setting time time 2
-                var pt2 = sch[0]["time"].match(/(\d+)(?::(\d\d))?\s*(p?)/);
-                t2.setHours( parseInt(pt2[1]) + (pt2[3] ? 12 : 0) );
-                t2.setMinutes( parseInt(pt2[2]) || 0 );
-
-                // estimate time
-                var ms = t1 - t2;
-                x = ms / 1000;
-                // var seconds = x % 60;
-                x /= 60;
-                // var minutes = x % 60;
-                x /= 60;
-                var hours = x % 24;
-
-                // truncate decimal
-                var trunHours = Math.floor(hours * 10) / 10;
-                // DEBUG
-                // console.log( hours );
-
-                var schl = "";
-                for (var c =0; c < sch.length; c++){
-                    var busAvil = (sch[c]["rtd"]=="1")?'<span class="glyphicon glyphicon-ok-sign"></span>':'';
-                    var lastTrain = (sch[c]["final"]=="1")?'<span class="glyphicon glyphicon-remove-circle"></span>':'';
-                    schl += '<tr>' +
-                                '<td>'+ sch[c]["time"] +'</td>' +
-                                '<td>'+ sch[c]["train"] +'</td>' +
-                                '<td>'+ sch[c]["station"] + " " + busAvil + " " + lastTrain +'</td>'+
-                            '</tr>';
-                }
-                // these are the trains that have quiet cars
-                if(sch[0]["train"] == "502" || sch[0]["train"] == "504" ||
-                        sch[0]["train"] == "102_exp" || sch[0]["train"] == "506" ||
-                        sch[0]["train"] == "512" || sch[0]["train"] == "514" ||
-                        sch[0]["train"] == "503" || sch[0]["train"] == "507" ||
-                        sch[0]["train"] == "509" || sch[0]["train"] == "515" ||
-                        sch[0]["train"] == "101_exp" || sch[0]["train"] == "517" ||
-                        sch[0]["train"] == "519"){
-                    // show user
-                    $("#quite-c").text("Designated QUIET CAR available");
-                }
-
-                // display schedule to user
-                document.getElementById("schedule-table").innerHTML = schl;
-                // total time
-                $("#sch-info").text("Total Time (est.): " + trunHours + "hours");
-
-
-
-                // adjust views
-                $(this).fadeOut();
-                $(this).text("Change Trip");
-                $("#data-entry").fadeOut();
-                $("#entire-sch").delay(500).fadeIn();
-                $(this).delay(100).fadeIn();
-
-            }
-            // if on trip change to schedule
-            else {
-                // set the text of the button
-
-                // adjust views
-                $("#entire-sch").fadeOut();
-                $(this).fadeOut();
-                $("#data-entry").delay(500).fadeIn();
-                $(this).text("Show Schedule");
-                $(this).delay(100).fadeIn();
-
-
-            }
-        });
-        */
-
         // this sets an array that holds all the object associated with direction "Northbound Weekday"
         function setDirectionArray(dir, day){
 
@@ -853,6 +713,7 @@
 
         function cancel() {
             setDir();
+            //$("#schedule").text("")
         }
 
         function setDir(){
@@ -868,8 +729,14 @@
             }
             var day = getDay();
 
+
             setDirectionArray(direction, day);
-//            swExample();
+
+            // check to see if selected is not null
+            if (selected != null) {
+                updateTimeSelector(selected);
+            }
+
             return false;
         }
 
