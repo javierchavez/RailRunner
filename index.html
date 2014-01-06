@@ -590,15 +590,17 @@
                     var ms = t1 - t2;
 
                     var minutes = (ms / (1000*60)) % 60;
-                    var hours   = (ms / (1000*60*60)) % 24;
+                    var hours   = parseInt((ms / (1000*60*60)) % 24);
 
                     // truncate decimal
                     // var truncate = function(t){ return Math.floor(hours * 10) / 10;}
                     var time = 0;
+
                     if(hours >= 1){
-                        time =  parseInt(hours).toString() + "hours " + minutes + " minutes";
+
+                        time =  ((hours>1)? hours.toString() +" hours ": hours.toString()+" hour ") + minutes.toString() + " minutes";
                     } else {
-                        time = minutes.toString() + " minutes";
+                        time = ((minutes==1)?minutes.toString() + " minute":minutes.toString() + " minutes");
                     }
                     // var busAvil = (times[c]["rtd"]=="1")?'<span class="glyphicon glyphicon-ok-sign"></span>':'';
                     // var lastTrain = (times[c]["final"]=="1")?'<span class="glyphicon glyphicon-remove-circle"></span>':'';
