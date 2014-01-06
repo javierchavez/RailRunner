@@ -588,20 +588,17 @@
 
                     // estimate time
                     var ms = t1 - t2;
-                    x = ms / 1000;
-                    // var seconds = x % 60;
-                    x /= 60;
-                    var minutes = x % 60;
-                    x /= 60;
-                    var hours = x % 24;
+
+                    var minutes = (ms / (1000*60)) % 60;
+                    var hours   = (ms / (1000*60*60)) % 24;
 
                     // truncate decimal
-                    var truncated = Math.floor(hours * 10) / 10;
+                    // var truncate = function(t){ return Math.floor(hours * 10) / 10;}
                     var time = 0;
-                    if(truncated >= 1){
-                        time = (Math.floor(hours * 10) / 10).toString() + " hours";
+                    if(hours >= 1){
+                        time =  parseInt(hours).toString() + "hours " + minutes + " minutes";
                     } else {
-                        time = (Math.floor(minutes * 10) / 10).toString() + " minutes";
+                        time = minutes.toString() + " minutes";
                     }
                     // var busAvil = (times[c]["rtd"]=="1")?'<span class="glyphicon glyphicon-ok-sign"></span>':'';
                     // var lastTrain = (times[c]["final"]=="1")?'<span class="glyphicon glyphicon-remove-circle"></span>':'';
